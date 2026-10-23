@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XIZT // Growth Intelligence — VR Player 360°</title>
+    <title>AppRadar // Portfolio & Growth Intelligence — Aivigil MSP</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -21,6 +21,7 @@
                         cyberLime: '#00FF87',
                         vividPurple: '#8B5CF6',
                         crimson: '#FF2A55',
+                        amberAlert: '#F59E0B',
                         borderGloss: 'rgba(255, 255, 255, 0.12)'
                     },
                     fontFamily: {
@@ -32,7 +33,7 @@
             }
         }
     </script>
-    <!-- Google Fonts: Syne + Plus Jakarta Sans + JetBrains Mono (Xizt / QClay Spec) -->
+    <!-- Google Fonts: Syne + Plus Jakarta Sans + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
@@ -45,25 +46,19 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 
     <style>
-        /* Smooth Custom Scrollbars */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #06080F; }
         ::-webkit-scrollbar-thumb { background: #182236; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #00F2FE; }
 
-        /* QClay Atmospheric Glow Spheres */
         .glow-mesh {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
             background: 
                 radial-gradient(circle at 15% 10%, rgba(0, 242, 254, 0.12) 0%, transparent 45%),
                 radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.14) 0%, transparent 45%),
                 radial-gradient(circle at 50% 80%, rgba(0, 255, 135, 0.08) 0%, transparent 50%);
         }
 
-        /* Xizt DevOps Signature Bento Glass */
         .xizt-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(12, 17, 28, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.09);
@@ -77,10 +72,9 @@
             border-color: rgba(0, 242, 254, 0.35);
             border-top-color: rgba(0, 242, 254, 0.6);
             box-shadow: 0 24px 60px -10px rgba(0, 242, 254, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
-        /* Glossy Pill Navigation */
         .floating-nav {
             background: rgba(11, 15, 25, 0.75);
             backdrop-filter: blur(24px) saturate(200%);
@@ -90,7 +84,6 @@
             border-radius: 9999px;
         }
 
-        /* Neon Shimmer Gradient Button */
         .btn-neon {
             background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #00FF87 100%);
             color: #040711;
@@ -103,37 +96,30 @@
             transform: translateY(-1px) scale(1.02);
         }
 
-        /* Gradient Text */
-        .text-gradient {
-            background: linear-gradient(135deg, #FFFFFF 20%, #A5F3FC 70%, #67E8F9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
         .text-gradient-neon {
             background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #00FF87 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Pulsing Dot */
         @keyframes pulseGlow {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.8); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.8); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0, 255, 135, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 135, 0); }
         }
         .pulse-beacon { animation: pulseGlow 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1); }
     </style>
 </head>
 <body class="bg-void text-slate-100 font-sans min-h-screen antialiased selection:bg-neonCyan selection:text-black overflow-x-hidden"
-      x-data="xiztGrowthApp()" x-init="initApp()">
+      x-data="aivigilAppRadar()" x-init="initApp()">
 
-    <!-- Glowing Background Aura -->
+    <!-- Ambient Glow Mesh -->
     <div class="glow-mesh"></div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
         
         <!-- ============================================== -->
-        <!-- FLOATING PILL NAVBAR (Xizt DevOps Webflow Style) -->
+        <!-- FLOATING PILL NAVBAR (Aivigil MSP AppRadar Spec) -->
         <!-- ============================================== -->
         <header class="sticky top-4 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="floating-nav px-5 py-3 flex items-center justify-between">
@@ -141,51 +127,55 @@
                 <!-- Logo & Brand -->
                 <div class="flex items-center gap-3">
                     <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-neonCyan via-electricBlue to-cyberLime flex items-center justify-center text-black font-extrabold shadow-lg shadow-neonCyan/30">
-                        <i data-lucide="zap" class="w-4 h-4 fill-black"></i>
+                        <i data-lucide="layers" class="w-4 h-4 fill-black"></i>
                     </div>
                     <div>
-                        <span class="font-display font-extrabold text-base tracking-tight text-white uppercase">XIZT // GROWTH</span>
-                        <span class="text-[10px] font-mono font-bold ml-1.5 px-2 py-0.5 rounded-full bg-neonCyan/15 text-neonCyan border border-neonCyan/30">
-                            VR TELEMETRY
-                        </span>
+                        <div class="flex items-center gap-2">
+                            <span class="font-display font-extrabold text-base tracking-tight text-white uppercase">AppRadar</span>
+                            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/15 text-cyberLime border border-cyberLime/30">
+                                AIVIGIL MSP
+                            </span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-mono tracking-wider">PORTFOLIO INTELLIGENCE // v0.3</p>
                     </div>
                 </div>
 
-                <!-- Central Navigation Links -->
+                <!-- Navigation Tabs -->
                 <nav class="hidden md:flex items-center gap-1 bg-white/[0.04] p-1 rounded-full border border-white/[0.06]">
-                    <button @click="activeTab = 'radar'" 
-                            :class="activeTab === 'radar' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
-                        Radar & Issues
-                    </button>
-                    <button @click="activeTab = 'growth'" 
-                            :class="activeTab === 'growth' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
-                        AdMob & Cohorts
-                    </button>
-                    <button @click="activeTab = 'directives'" 
-                            :class="activeTab === 'directives' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                    <button @click="mainView = 'portfolio'" 
+                            :class="mainView === 'portfolio' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
                             class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
-                        <span>Sprint Backlog</span>
-                        <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-neonCyan/20 text-neonCyan font-mono font-bold" x-text="experiments.length"></span>
+                        <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-cyberLime"></i>
+                        <span>63-App Portfolio</span>
                     </button>
-                    <button @click="activeTab = 'recorder'" 
-                            :class="activeTab === 'recorder' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
-                        Reviews Feed
+                    
+                    <button @click="mainView = 'vrplayer'" 
+                            :class="mainView === 'vrplayer' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
+                        <i data-lucide="glasses" class="w-3.5 h-3.5 text-neonCyan"></i>
+                        <span>VR Player (Zentech) #1</span>
                     </button>
-                    <button @click="activeTab = 'access'" 
-                            :class="activeTab === 'access' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
-                        API & Access
+
+                    <button @click="mainView = 'briefing'" 
+                            :class="mainView === 'briefing' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amberAlert"></i>
+                        <span>Claude Synthesis</span>
+                    </button>
+
+                    <button @click="mainView = 'directives'" 
+                            :class="mainView === 'directives' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
+                        <i data-lucide="target" class="w-3.5 h-3.5 text-vividPurple"></i>
+                        <span>Directives</span>
                     </button>
                 </nav>
 
-                <!-- Status Pill & Share Button -->
+                <!-- Admin & Share Action -->
                 <div class="flex items-center gap-3">
-                    <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs font-mono">
+                    <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs font-mono">
                         <span class="w-2 h-2 rounded-full bg-cyberLime pulse-beacon"></span>
-                        <span class="text-cyberLime font-bold text-[11px]">500K+ USERS</span>
+                        <span class="text-slate-300 text-[11px]">admin@rmaac</span>
                     </div>
 
                     <button @click="copySlackShare()" 
@@ -199,440 +189,395 @@
 
 
         <!-- ============================================== -->
-        <!-- TEMPORAL FILTER STRIP (App Radar / Supabase Style) -->
+        <!-- VIEW 1: AIVIGIL 63-APP PORTFOLIO OVERVIEW -->
         <!-- ============================================== -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2 w-full">
-            <div class="xizt-card px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
-                
-                <!-- Presets -->
-                <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="text-xs font-mono text-slate-400 uppercase tracking-wider mr-2 flex items-center gap-1">
-                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-neonCyan"></i>
-                        <span>Window:</span>
-                    </span>
-                    <template x-for="p in ['7d', '30d', '90d', '6m', '1y', 'all']" :key="p">
-                        <button @click="setPreset(p)" 
-                                :class="selectedPreset === p ? 'bg-gradient-to-r from-neonCyan to-cyberLime text-black font-extrabold shadow-lg shadow-neonCyan/20' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/[0.08]'"
-                                class="px-3 py-1 rounded-full text-xs font-mono uppercase transition"
-                                x-text="p === 'all' ? 'All Time' : p.toUpperCase()">
-                        </button>
-                    </template>
-                </div>
+        <main x-show="mainView === 'portfolio'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
-                <!-- Cohort Month & Range -->
-                <div class="flex items-center gap-3 flex-wrap">
-                    <select x-model="selectedMonth" @change="fetchTelemetry()"
-                            class="bg-ink border border-white/15 text-xs text-neonCyan font-mono px-3 py-1.5 rounded-full focus:outline-none focus:border-neonCyan">
-                        <option value="all">ALL MONTHS (COHORTS)</option>
-                        <option value="2026-10">OCTOBER 2026 (CURRENT)</option>
-                        <option value="2026-09">SEPTEMBER 2026</option>
-                        <option value="2026-08">AUGUST 2026</option>
-                        <option value="2026-07">JULY 2026</option>
-                        <option value="2026-06">JUNE 2026</option>
-                        <option value="2026-05">MAY 2026</option>
-                    </select>
+            <!-- Portfolio Header Banner -->
+            <div class="xizt-card p-7 sm:p-8">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <div>
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyberLime/15 text-cyberLime border border-cyberLime/30 font-bold uppercase">
+                                Active Window: Sep 23 – Oct 23 (30 Days)
+                            </span>
+                            <span class="text-xs font-mono text-slate-400">© 2026 Aivigil MSP</span>
+                        </div>
+                        <h1 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-1 tracking-tight uppercase">
+                            The Portfolio Overview
+                        </h1>
+                        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-mono">
+                            63 Apps Tracked • $32,068 Total Revenue • $31,639 Ad Spend • <strong class="text-cyberLime">+$429 Profit (1.01x ROAS)</strong>
+                        </p>
+                    </div>
 
-                    <div class="flex items-center gap-1.5 bg-ink px-3 py-1 rounded-full border border-white/10 text-xs font-mono text-slate-300">
-                        <input type="date" x-model="startDate" @change="fetchTelemetry()" class="bg-transparent text-white focus:outline-none">
-                        <span>→</span>
-                        <input type="date" x-model="endDate" @change="fetchTelemetry()" class="bg-transparent text-white focus:outline-none">
+                    <div class="flex items-center gap-3">
+                        <div class="p-4 rounded-2xl bg-black/60 border border-white/10 text-right space-y-0.5">
+                            <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400">Latest Day (Oct 20)</div>
+                            <div class="font-display text-2xl font-extrabold text-cyberLime">$130 PROFIT</div>
+                            <div class="text-[10px] text-neonCyan font-mono">Spend $0 (▲ 30.4%)</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
+            <!-- KPI Cards Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="xizt-card p-6">
+                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">30-Day Revenue</div>
+                    <div class="font-display text-3xl font-extrabold text-white mt-2 mb-0.5">$32,068</div>
+                    <div class="text-[11px] font-mono text-slate-400">Across 63 Monitored Apps</div>
+                </div>
+                <div class="xizt-card p-6">
+                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">30-Day Ad Spend</div>
+                    <div class="font-display text-3xl font-extrabold text-slate-300 mt-2 mb-0.5">$31,639</div>
+                    <div class="text-[11px] font-mono text-slate-400">Google Ads & UAC Spend</div>
+                </div>
+                <div class="xizt-card p-6">
+                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Net Portfolio Profit</div>
+                    <div class="font-display text-3xl font-extrabold text-cyberLime mt-2 mb-0.5">+$429</div>
+                    <div class="text-[11px] font-mono text-cyberLime">Break-Even Baseline</div>
+                </div>
+                <div class="xizt-card p-6">
+                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Blended Window ROAS</div>
+                    <div class="font-display text-3xl font-extrabold text-gradient-neon mt-2 mb-0.5">1.01x</div>
+                    <div class="text-[11px] font-mono text-neonCyan">Sep 23 → Oct 23</div>
+                </div>
+            </div>
 
-        <!-- ============================================== -->
-        <!-- MAIN BENTO GRID (Xizt DevOps Showcase Spec) -->
-        <!-- ============================================== -->
-        <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 space-y-6">
+            <!-- Time-Series Revenue vs Spend Chart -->
+            <div class="xizt-card p-6">
+                <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                    <div>
+                        <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Daily Revenue vs Spend Time Series</h3>
+                        <p class="text-xs text-slate-400 font-mono">Tracking the daily divergence leading to the zero-spend stabilization</p>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs font-mono">
+                        <span class="flex items-center gap-1.5 text-cyberLime"><span class="w-2 h-2 rounded-full bg-cyberLime"></span> Revenue</span>
+                        <span class="flex items-center gap-1.5 text-crimson"><span class="w-2 h-2 rounded-full bg-crimson"></span> Spend</span>
+                    </div>
+                </div>
+                <div class="h-64 relative">
+                    <canvas id="portfolioTimeSeriesChart"></canvas>
+                </div>
+            </div>
 
-            <!-- HERO BENTO: VR PLAYER 360° OVERVIEW -->
-            <div class="xizt-card p-7 sm:p-8 relative overflow-hidden">
-                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                    
-                    <div class="flex items-center gap-6">
-                        <div class="relative">
-                            <img :src="appInfo.icon" alt="VR App Icon" 
-                                 class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover shadow-2xl border-2 border-white/15 bg-ink p-1">
-                            <span class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-black border border-white/20 flex items-center justify-center text-cyberLime">
-                                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
-                            </span>
+            <!-- Health Cohorts Section -->
+            <div class="space-y-4 pt-2">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="font-display text-xl font-extrabold text-white uppercase tracking-tight">Portfolio Health Cohorts</h2>
+                        <p class="text-xs text-slate-400 font-mono">Segmenting the 63 apps by ROAS efficiency and profit generation</p>
+                    </div>
+                </div>
+
+                <!-- 1. PROFITABLE APPS (Led by VR Zentech) -->
+                <div class="xizt-card p-6 border-l-4 border-l-cyberLime">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.08]">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-3 h-3 rounded-full bg-cyberLime"></span>
+                            <h3 class="font-display text-base font-bold text-white uppercase">Profitable Cohort (7 Apps · ROAS ≥ 1.0x)</h3>
                         </div>
-                        <div class="space-y-1.5">
-                            <div class="flex items-center gap-3 flex-wrap">
-                                <h1 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase" x-text="appInfo.title"></h1>
-                                <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-gradient-to-r from-neonCyan/20 to-cyberLime/20 text-neonCyan border border-neonCyan/30"
-                                      x-text="appInfo.genre"></span>
+                        <span class="font-mono text-xs text-cyberLime font-bold">$16,309 rev • $13,581 spend • +$2,728 profit</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                        
+                        <!-- VR ZENTECH (Golden Goose Card) -->
+                        <div class="p-4 rounded-2xl bg-black/60 border border-cyberLime/40 relative overflow-hidden cursor-pointer hover:border-cyberLime transition"
+                             @click="mainView = 'vrplayer'">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-display font-bold text-white text-sm">VR (ZENTECH) ⭐</span>
+                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.24x ROAS</span>
                             </div>
-                            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-normal leading-relaxed" x-text="appInfo.summary"></p>
-                            <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1 flex-wrap">
-                                <span>STUDIO: <strong class="text-white" x-text="appInfo.developer"></strong></span>
-                                <span>•</span>
-                                <span>PACKAGE: <strong class="text-neonCyan" x-text="appInfo.package"></strong></span>
-                                <span>•</span>
-                                <span class="flex items-center gap-1 text-amber-400 font-bold">
-                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
-                                    <span class="text-white" x-text="appInfo.score"></span> / 5.0 RATING
+                            <div class="text-[11px] font-mono text-neonCyan mb-2">com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</div>
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$6,834</strong></div>
+                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$5,534</span></div>
+                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$1,300</strong></div>
+                            </div>
+                            <div class="mt-2 text-[10px] font-mono text-cyberLime/80 flex items-center gap-1">
+                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                                <span>Click to inspect 360° Defect Radar</span>
+                            </div>
+                        </div>
+
+                        <!-- Phone Locator 2 -->
+                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-display font-bold text-white text-sm">PHONE LOCATOR 2 (DEVNEST)</span>
+                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.11x ROAS</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.phone.number.tracker.phonenumberlocator</div>
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$6,427</strong></div>
+                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$5,794</span></div>
+                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$633</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- VR 2 (RMAAC PAKISTAN) -->
+                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-display font-bold text-white text-sm">VR 2 (RMAAC PAKISTAN)</span>
+                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.55x ROAS</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.vrplayer.videoplayer360.vrplayer360</div>
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$1,098</strong></div>
+                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$706</span></div>
+                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$392</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- AI Street View -->
+                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-display font-bold text-white text-sm">AI Street View</span>
+                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.18x</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.streetview.tripplanner.ai</div>
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$1,571</strong></div>
+                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$1,329</span></div>
+                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$242</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Marine 4 -->
+                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-display font-bold text-white text-sm">MARINE 4 (REVERSE)</span>
+                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.52x</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.shiptracker.marineradar</div>
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$324</strong></div>
+                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$213</span></div>
+                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$111</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Marine 1 Pro -->
+                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-display font-bold text-white text-sm">MARINE 1 PRO (ZENTECH)</span>
+                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">22.3x</span>
+                            </div>
+                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.shiptracker.vesselfinder.pro</div>
+                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
+                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$50</strong></div>
+                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$2</span></div>
+                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$48</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. BELOW BREAK-EVEN COHORT -->
+                <div class="xizt-card p-6 border-l-4 border-l-amberAlert">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.08]">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-3 h-3 rounded-full bg-amberAlert"></span>
+                            <h3 class="font-display text-base font-bold text-white uppercase">Below Break-Even (8 Apps · 0 < ROAS < 1.0)</h3>
+                        </div>
+                        <span class="font-mono text-xs text-amberAlert font-bold">$15,323 rev • $18,057 spend • -$2,734 drag</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
+                            <div class="font-bold text-white text-xs truncate">VR 3 (GALAXY IT)</div>
+                            <div class="text-[10px] font-mono text-slate-400">Rev: $5,021 | Spend: $5,648</div>
+                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$627 (0.89x)</div>
+                        </div>
+                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
+                            <div class="font-bold text-white text-xs truncate">AI Street View Pro</div>
+                            <div class="text-[10px] font-mono text-slate-400">Rev: $3,704 | Spend: $3,829</div>
+                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$125 (0.97x)</div>
+                        </div>
+                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
+                            <div class="font-bold text-white text-xs truncate">Family Tracker</div>
+                            <div class="text-[10px] font-mono text-slate-400">Rev: $1,650 | Spend: $3,042</div>
+                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$1,392 (0.54x)</div>
+                        </div>
+                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
+                            <div class="font-bold text-white text-xs truncate">PHONE NUMBER LOCATOR</div>
+                            <div class="text-[10px] font-mono text-slate-400">Rev: $1,729 | Spend: $1,777</div>
+                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$49 (0.97x)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. ORGANIC EARNERS -->
+                <div class="xizt-card p-6 border-l-4 border-l-neonCyan">
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/[0.08]">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-3 h-3 rounded-full bg-neonCyan"></span>
+                            <h3 class="font-display text-base font-bold text-white uppercase">Pure Organic Earners (8 Apps · $0 Ad Spend)</h3>
+                        </div>
+                        <span class="font-mono text-xs text-neonCyan font-bold">$436 Total Free Revenue</span>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap text-xs font-mono">
+                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">Street View 360: <strong class="text-cyberLime">$147</strong></span>
+                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">VD 4 (Reverse): <strong class="text-cyberLime">$79</strong></span>
+                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">Bubble Level: <strong class="text-cyberLime">$62</strong></span>
+                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">VD 5 (Cool It): <strong class="text-cyberLime">$50</strong></span>
+                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">Video Player 2: <strong class="text-cyberLime">$49</strong></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- ============================================== -->
+        <!-- VIEW 2: VR PLAYER 360° (ZENTECH) RADAR -->
+        <!-- ============================================== -->
+        <main x-show="mainView === 'vrplayer'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+            <!-- VR Zentech Hero Card -->
+            <div class="xizt-card p-7 relative overflow-hidden">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    <div class="flex items-center gap-5">
+                        <img src="https://play-lh.googleusercontent.com/PiTPYH8vDQzJD18egrd74CLK6XOJXePXSlM0lvGPISUyX_WMnnIVVlkSlR8YSjOyA1-QBLbH9Lmf1yagOhlz" 
+                             alt="VR App Icon" 
+                             class="w-20 h-20 rounded-3xl object-cover shadow-2xl border-2 border-white/15 bg-ink p-1">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <h1 class="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight uppercase">
+                                    VR (Zentech) — #1 Profit Leader
+                                </h1>
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyberLime/20 text-cyberLime border border-cyberLime/30">
+                                    1.24x ROAS • $1,300 PROFIT
                                 </span>
                             </div>
+                            <div class="text-xs font-mono text-neonCyan">com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</div>
+                            <p class="text-xs text-slate-300 max-w-2xl font-sans">
+                                Generates 42% of total profitable revenue in the 63-app portfolio. Resolving gyroscopic drift and in-headset ad shock will directly unlock higher retention and rating recovery to 4.38★.
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Right Stats Card -->
-                    <div class="flex items-center gap-3 self-stretch lg:self-auto justify-end">
-                        <div class="p-4 rounded-2xl bg-black/50 border border-white/10 text-right space-y-0.5">
-                            <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Target Recovery</div>
-                            <div class="font-display text-2xl font-extrabold text-gradient-neon">4.38★ TARGET</div>
-                            <div class="text-[11px] text-cyberLime font-mono">+0.24 Rating Deficit</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ============================================== -->
-            <!-- 4-PILLAR METRICS BENTO (Linear / Xizt Card Grid) -->
-            <!-- ============================================== -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                
-                <div class="xizt-card p-6">
-                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
-                        <span>Analyzed Telemetry</span>
-                        <i data-lucide="activity" class="w-4 h-4 text-neonCyan"></i>
-                    </div>
-                    <div class="font-display text-3xl font-extrabold text-white mt-3 mb-1" x-text="kpi.total_reviews"></div>
-                    <div class="text-[11px] font-mono text-slate-400">Verified Filter Cohort</div>
-                </div>
-
-                <div class="xizt-card p-6">
-                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
-                        <span>Net Sentiment Index</span>
-                        <i data-lucide="smile" class="w-4 h-4 text-cyberLime"></i>
-                    </div>
-                    <div class="font-display text-3xl font-extrabold mt-3 mb-1 text-cyberLime"
-                         x-text="(kpi.net_sentiment > 0 ? '+' : '') + kpi.net_sentiment + '%'"></div>
-                    <div class="text-[11px] font-mono text-slate-400" x-text="kpi.pos_count + ' Pos vs ' + kpi.neg_count + ' Neg'"></div>
-                </div>
-
-                <div class="xizt-card p-6 border-l-2 border-l-crimson">
-                    <div class="flex items-center justify-between text-xs font-mono text-crimson uppercase tracking-wider">
-                        <span>Critical Defect Count</span>
-                        <i data-lucide="alert-triangle" class="w-4 h-4 text-crimson"></i>
-                    </div>
-                    <div class="font-display text-3xl font-extrabold text-crimson mt-3 mb-1" x-text="kpi.critical_defects"></div>
-                    <div class="text-[11px] font-mono text-crimson" x-text="kpi.defect_pct + '% of total sample'"></div>
-                </div>
-
-                <div class="xizt-card p-6">
-                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
-                        <span>Monthly Ad Revenue</span>
-                        <i data-lucide="dollar-sign" class="w-4 h-4 text-neonCyan"></i>
-                    </div>
-                    <div class="font-display text-3xl font-extrabold text-white mt-3 mb-1">$14,820</div>
-                    <div class="text-[11px] font-mono text-cyberLime">AdMob eCPM: $4.92</div>
-                </div>
-            </div>
-
-
-            <!-- ============================================== -->
-            <!-- TAB 1: RADAR & ISSUES (Visual Telemetry) -->
-            <!-- ============================================== -->
-            <div x-show="activeTab === 'radar'" class="space-y-6">
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    
-                    <div class="xizt-card p-6">
-                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
-                            <div>
-                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">360° VR Friction Vector Share</h3>
-                                <p class="text-xs text-slate-400">Classified distribution across rendering and sensor pipelines</p>
-                            </div>
-                            <span class="text-xs font-mono text-neonCyan">DONUT</span>
-                        </div>
-                        <div class="h-64 relative flex items-center justify-center">
-                            <canvas id="categoryDonutChart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="xizt-card p-6">
-                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
-                            <div>
-                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Star Rating Velocity Spectrum</h3>
-                                <p class="text-xs text-slate-400">1★ Defect Volume vs 5★ Promoter Counts</p>
-                            </div>
-                            <span class="text-xs font-mono text-cyberLime">HISTOGRAM</span>
-                        </div>
-                        <div class="h-64 relative">
-                            <canvas id="starBarChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="xizt-card p-6">
-                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
-                            <div>
-                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Weekly Sentiment Velocity Curve</h3>
-                                <p class="text-xs text-slate-400">Rolling customer mood tracking (-1.0 to +1.0)</p>
-                            </div>
-                            <span class="text-xs font-mono text-neonCyan">TIMELINE</span>
-                        </div>
-                        <div class="h-60 relative">
-                            <canvas id="trajectoryChart"></canvas>
-                        </div>
-                    </div>
-
-                    <div class="xizt-card p-6">
-                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
-                            <div>
-                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Build Version Churn Anomalies</h3>
-                                <p class="text-xs text-slate-400">Correlating release patches with 1-star surges</p>
-                            </div>
-                            <span class="text-xs font-mono text-crimson">ANOMALY</span>
-                        </div>
-                        <div class="h-60 relative">
-                            <canvas id="versionChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- ============================================== -->
-            <!-- TAB 2: ADMOB & MULTI-STREAM COHORTS -->
-            <!-- ============================================== -->
-            <div x-show="activeTab === 'growth'" class="space-y-6">
-                
-                <div class="xizt-card p-7">
-                    <div class="flex items-center justify-between mb-5 border-b border-white/[0.08] pb-4">
-                        <div>
-                            <h3 class="font-display text-lg font-bold text-white tracking-wide uppercase">Month-Over-Month Performance & Growth Cohorts</h3>
-                            <p class="text-xs text-slate-400">Cross-referencing Store Sentiment, AdMob Monetization, and Android Vitals</p>
-                        </div>
-                        <span class="px-3 py-1 rounded-full bg-cyberLime/15 text-cyberLime font-mono text-xs font-bold border border-cyberLime/30">
-                            HISTORICAL TELEMETRY
-                        </span>
-                    </div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left font-mono text-xs border-collapse">
-                            <thead>
-                                <tr class="border-b border-white/10 text-slate-400 text-[11px]">
-                                    <th class="py-3 px-3">COHORT MONTH</th>
-                                    <th class="py-3 px-3">TOTAL INSTALLS</th>
-                                    <th class="py-3 px-3">NET GROWTH</th>
-                                    <th class="py-3 px-3 text-cyberLime">ADMOB REVENUE</th>
-                                    <th class="py-3 px-3 text-cyberLime">eCPM</th>
-                                    <th class="py-3 px-3 text-neonCyan">ADS SPEND</th>
-                                    <th class="py-3 px-3 text-neonCyan">ROAS</th>
-                                    <th class="py-3 px-3">CRASH-FREE</th>
-                                    <th class="py-3 px-3 text-amber-400">RATING</th>
-                                    <th class="py-3 px-3">SENTIMENT</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/[0.05]">
-                                <template x-for="row in monthlyGrowth" :key="row.month">
-                                    <tr class="hover:bg-white/[0.02] transition">
-                                        <td class="py-3.5 px-3 font-bold text-white" x-text="row.month"></td>
-                                        <td class="py-3.5 px-3 text-slate-300" x-text="row.total_installs"></td>
-                                        <td class="py-3.5 px-3 text-cyberLime font-bold" x-text="'+' + row.net_monthly_installs.toLocaleString()"></td>
-                                        <td class="py-3.5 px-3 text-cyberLime font-bold" x-text="'$' + row.admob_revenue.toLocaleString()"></td>
-                                        <td class="py-3.5 px-3 text-cyberLime" x-text="'$' + row.admob_ecpm"></td>
-                                        <td class="py-3.5 px-3 text-neonCyan" x-text="'$' + row.google_ads_spend.toLocaleString()"></td>
-                                        <td class="py-3.5 px-3 text-neonCyan font-bold" x-text="row.roas"></td>
-                                        <td class="py-3.5 px-3 text-slate-300" x-text="row.crash_free_users"></td>
-                                        <td class="py-3.5 px-3 text-amber-400 font-bold" x-text="row.avg_rating + '★'"></td>
-                                        <td class="py-3.5 px-3 font-bold" 
-                                            :class="row.net_sentiment.startsWith('+') ? 'text-cyberLime' : 'text-crimson'" 
-                                            x-text="row.net_sentiment"></td>
-                                    </tr>
-                                </template>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- ============================================== -->
-            <!-- TAB 3: SPRINT DIRECTIVES (Backlog) -->
-            <!-- ============================================== -->
-            <div x-show="activeTab === 'directives'" class="space-y-4">
-                <template x-for="exp in experiments" :key="exp.id">
-                    <div class="xizt-card p-7 border-l-4"
-                         :class="{
-                            'border-l-crimson': exp.priority.includes('P0'),
-                            'border-l-neonCyan': exp.priority.includes('P1'),
-                            'border-l-cyberLime': exp.priority.includes('P2')
-                         }">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                            <div class="flex items-center gap-3 flex-wrap">
-                                <span class="font-mono text-xs font-bold px-3 py-1 rounded-full tracking-wider"
-                                      :class="{
-                                        'bg-crimson/15 text-crimson border border-crimson/40': exp.priority.includes('P0'),
-                                        'bg-neonCyan/15 text-neonCyan border border-neonCyan/40': exp.priority.includes('P1'),
-                                        'bg-cyberLime/15 text-cyberLime border border-cyberLime/40': exp.priority.includes('P2')
-                                      }"
-                                      x-text="exp.priority"></span>
-                                <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.06] text-white border border-white/10" x-text="exp.category"></span>
-                                <span class="text-xs font-mono text-slate-400" x-text="'OWNER: ' + exp.action_owner"></span>
-                                <span class="text-xs font-mono text-neonCyan" x-text="'EFFORT: ' + exp.effort_level"></span>
-                            </div>
-
-                            <button @click="copyLinearSpec(exp)" 
-                                    class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/15 border border-white/15 text-white transition font-mono text-xs flex items-center gap-1.5 font-bold">
-                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                                <span>Copy Jira Payload</span>
-                            </button>
-                        </div>
-
-                        <h3 class="font-display text-xl font-extrabold text-white tracking-tight mb-2 uppercase" x-text="exp.id + ' // ' + exp.title"></h3>
-                        <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 bg-black/40 p-3.5 rounded-xl border border-white/[0.06]">
-                            <strong class="text-neonCyan font-mono uppercase">Telemetry Root Cause:</strong> 
-                            <span x-text="exp.hypothesis"></span>
-                        </div>
-                        <div class="mb-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 border border-cyberLime/40 text-xs font-mono text-cyberLime font-bold">
+                    <div class="flex items-center gap-3">
+                        <button @click="mainView = 'directives'" class="btn-neon px-5 py-2.5 rounded-full text-xs font-bold flex items-center gap-1.5">
                             <i data-lucide="target" class="w-4 h-4"></i>
-                            <span x-text="'IMPACT TARGET: ' + exp.target_metric"></span>
-                        </div>
-                        <div class="space-y-2 pt-3 border-t border-white/[0.06]">
-                            <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Customer Proof Logs (<span x-text="exp.evidence_count"></span> citations):</div>
-                            <template x-for="quote in exp.sample_quotes" :key="quote">
-                                <div class="text-xs text-slate-300 italic pl-3 border-l-2 border-neonCyan py-1 bg-black/40 rounded-r font-mono">
-                                    "<span x-text="quote"></span>"
-                                </div>
-                            </template>
-                        </div>
+                            <span>View VR Sprint Directives</span>
+                        </button>
                     </div>
-                </template>
+                </div>
             </div>
 
+            <!-- Charts Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="xizt-card p-6">
+                    <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                        <h3 class="font-display text-sm font-bold text-white tracking-wide uppercase">360° VR Friction Vector Breakdown</h3>
+                        <span class="text-xs font-mono text-neonCyan">DONUT</span>
+                    </div>
+                    <div class="h-64 relative flex items-center justify-center">
+                        <canvas id="vrCategoryDonut"></canvas>
+                    </div>
+                </div>
 
-            <!-- ============================================== -->
-            <!-- TAB 4: REVIEWS FEED -->
-            <!-- ============================================== -->
-            <div x-show="activeTab === 'recorder'" class="space-y-4">
-                <div class="xizt-card p-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div class="relative w-full md:w-80">
-                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
-                        <input type="text" x-model="searchQuery" 
-                               placeholder="Filter reviews instantly..." 
-                               class="bg-ink text-xs text-slate-200 pl-9 pr-4 py-2.5 rounded-full border border-white/10 focus:border-neonCyan w-full focus:outline-none font-mono">
+                <div class="xizt-card p-6">
+                    <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                        <h3 class="font-display text-sm font-bold text-white tracking-wide uppercase">Star Rating Velocity (14,820+ Ratings)</h3>
+                        <span class="text-xs font-mono text-cyberLime">HISTOGRAM</span>
+                    </div>
+                    <div class="h-64 relative">
+                        <canvas id="vrStarBar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- ============================================== -->
+        <!-- VIEW 3: CLAUDE SYNTHESIS DAILY BRIEFING -->
+        <!-- ============================================== -->
+        <main x-show="mainView === 'briefing'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+            <div class="xizt-card p-8 border border-amberAlert/30 space-y-4">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amberAlert/20 text-amberAlert flex items-center justify-center font-bold">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-display text-xl font-extrabold text-white uppercase">Claude · Synthesis</span>
+                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-amberAlert/20 text-amberAlert">DAILY BRIEFING</span>
+                            </div>
+                            <p class="text-xs text-slate-400 font-mono">Generated: Oct 22, 10:31 · 1 day ago</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono text-cyberLime font-bold">14 APPS ACTIVE</span>
+                </div>
+
+                <blockquote class="text-sm text-slate-200 leading-relaxed font-sans bg-black/40 p-5 rounded-2xl border border-white/10 space-y-3">
+                    <p>
+                        Portfolio revenue on <strong>2026-10-20 was $483.22 with $0 spend</strong>, yielding <strong>$483.22 profit</strong> across 14 apps with activity. All paid campaigns appear to have stopped spending — a dramatic shift from the prior day's $795.87 spend — though it is unclear whether this is intentional budget exhaustion, account-level pauses, or a data lag.
+                    </p>
+                    <p>
+                        <strong>PHONE LOCATOR 2 (DEVNEST)</strong> led with revenue of $227.55, followed by <strong>VR (ZENTECH)</strong> at $160.29; together these two apps accounted for <strong>80% of portfolio revenue</strong>.
+                    </p>
+                    <p>
+                        The zero-spend day eliminates the persistent ROAS-negative drag that has plagued the portfolio for weeks, but sustainability depends on whether campaigns restart tomorrow at prior levels.
+                    </p>
+                </blockquote>
+            </div>
+        </main>
+
+
+        <!-- ============================================== -->
+        <!-- VIEW 4: SPRINT DIRECTIVES (Backlog) -->
+        <!-- ============================================== -->
+        <main x-show="mainView === 'directives'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-4">
+            <template x-for="exp in experiments" :key="exp.id">
+                <div class="xizt-card p-7 border-l-4"
+                     :class="{
+                        'border-l-crimson': exp.priority.includes('P0'),
+                        'border-l-neonCyan': exp.priority.includes('P1'),
+                        'border-l-cyberLime': exp.priority.includes('P2')
+                     }">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span class="font-mono text-xs font-bold px-3 py-1 rounded-full tracking-wider"
+                                  :class="{
+                                    'bg-crimson/15 text-crimson border border-crimson/40': exp.priority.includes('P0'),
+                                    'bg-neonCyan/15 text-neonCyan border border-neonCyan/40': exp.priority.includes('P1'),
+                                    'bg-cyberLime/15 text-cyberLime border border-cyberLime/40': exp.priority.includes('P2')
+                                  }"
+                                  x-text="exp.priority"></span>
+                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.06] text-white" x-text="exp.category"></span>
+                            <span class="text-xs font-mono text-slate-400" x-text="'OWNER: ' + exp.action_owner"></span>
+                            <span class="text-xs font-mono text-neonCyan" x-text="'EFFORT: ' + exp.effort_level"></span>
+                        </div>
+
+                        <button @click="copyLinearSpec(exp)" 
+                                class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/15 border border-white/15 text-white transition font-mono text-xs flex items-center gap-1.5 font-bold">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span>Copy Jira Ticket</span>
+                        </button>
                     </div>
 
-                    <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
-                        <button @click="selectedFilterCat = 'All'" 
-                                :class="selectedFilterCat === 'All' ? 'bg-white text-black font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
-                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">ALL</button>
-                        <button @click="selectedFilterCat = '360° Codec & Crash'" 
-                                :class="selectedFilterCat === '360° Codec & Crash' ? 'bg-crimson text-white font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
-                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">CRASHES</button>
-                        <button @click="selectedFilterCat = 'Gyro & Tracking Drift'" 
-                                :class="selectedFilterCat === 'Gyro & Tracking Drift' ? 'bg-neonCyan text-black font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
-                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">GYRO DRIFT</button>
-                        <button @click="selectedFilterCat = 'Ad Intrusion & Immersion'" 
-                                :class="selectedFilterCat === 'Ad Intrusion & Immersion' ? 'bg-amber-400 text-black font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
-                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">AD SHOCK</button>
+                    <h3 class="font-display text-xl font-extrabold text-white tracking-tight mb-2 uppercase" x-text="exp.id + ' // ' + exp.title"></h3>
+                    <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 bg-black/40 p-3.5 rounded-xl border border-white/[0.06]">
+                        <strong class="text-neonCyan font-mono uppercase">Telemetry Root Cause:</strong> 
+                        <span x-text="exp.hypothesis"></span>
                     </div>
-
-                    <div class="flex items-center gap-1 shrink-0">
-                        <template x-for="star in [5, 4, 3, 2, 1]" :key="star">
-                            <button @click="toggleStarFilter(star)" 
-                                    :class="selectedStars.includes(star) ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'text-slate-600 bg-ink border-white/10'"
-                                    class="w-8 h-8 rounded-full text-xs font-mono font-bold border flex items-center justify-center transition"
-                                    x-text="star + '★'"></button>
+                    <div class="mb-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 border border-cyberLime/40 text-xs font-mono text-cyberLime font-bold">
+                        <i data-lucide="target" class="w-4 h-4"></i>
+                        <span x-text="'IMPACT TARGET: ' + exp.target_metric"></span>
+                    </div>
+                    <div class="space-y-1.5 pt-3 border-t border-white/[0.06]">
+                        <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Verbatim Flight Logs:</div>
+                        <template x-for="quote in exp.sample_quotes" :key="quote">
+                            <div class="text-xs text-slate-300 italic pl-3 border-l-2 border-neonCyan py-1 bg-black/40 rounded-r font-mono">
+                                "<span x-text="quote"></span>"
+                            </div>
                         </template>
                     </div>
                 </div>
-
-                <div class="space-y-2.5">
-                    <template x-for="r in filteredReviews" :key="r.review_id">
-                        <div class="xizt-card p-4 hover:border-neonCyan/40 transition">
-                            <div class="flex items-start justify-between gap-3 mb-1.5">
-                                <div class="flex items-center gap-2.5 flex-wrap">
-                                    <div class="flex items-center text-amber-400 text-xs">
-                                        <template x-for="i in r.score" :key="i"><i data-lucide="star" class="w-3 h-3 fill-amber-400"></i></template>
-                                    </div>
-                                    <span class="font-mono text-xs font-bold text-neonCyan" x-text="r.user_name"></span>
-                                    <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.08] text-white" x-text="r.category"></span>
-                                    <span class="text-[10px] font-mono text-slate-500" x-text="'v' + r.version"></span>
-                                </div>
-                                <span class="text-[10px] font-mono text-slate-500" x-text="r.date"></span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" x-text="r.content"></p>
-                        </div>
-                    </template>
-                </div>
-            </div>
-
-
-            <!-- ============================================== -->
-            <!-- TAB 5: MANAGER ACCESS & API LINKS -->
-            <!-- ============================================== -->
-            <div x-show="activeTab === 'access'" class="space-y-6">
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <div class="xizt-card p-6 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="font-display text-sm font-bold text-cyberLime uppercase">1 // Google AdMob API</span>
-                            <i data-lucide="external-link" class="w-4 h-4 text-cyberLime"></i>
-                        </div>
-                        <p class="text-xs text-slate-300">Pulls daily impressions, eCPM, and interstitial ad load.</p>
-                        <div class="p-3 bg-black/60 border border-white/10 rounded-xl font-mono text-xs text-slate-400 space-y-1">
-                            <div><strong>Console:</strong> <a href="https://apps.admob.com" target="_blank" class="text-cyberLime hover:underline">apps.admob.com</a></div>
-                            <div><strong>Role:</strong> <span class="text-white">AdMob API Viewer</span></div>
-                        </div>
-                    </div>
-
-                    <div class="xizt-card p-6 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="font-display text-sm font-bold text-neonCyan uppercase">2 // Play Console & Vitals</span>
-                            <i data-lucide="external-link" class="w-4 h-4 text-neonCyan"></i>
-                        </div>
-                        <p class="text-xs text-slate-300">Streams Android Vitals, ANR rates, and crash telemetry.</p>
-                        <div class="p-3 bg-black/60 border border-white/10 rounded-xl font-mono text-xs text-slate-400 space-y-1">
-                            <div><strong>Console:</strong> <a href="https://play.google.com/console" target="_blank" class="text-neonCyan hover:underline">play.google.com/console</a></div>
-                            <div><strong>Role:</strong> <span class="text-white">Read-Only (Vitals & Reviews)</span></div>
-                        </div>
-                    </div>
-
-                    <div class="xizt-card p-6 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="font-display text-sm font-bold text-vividPurple uppercase">3 // Google Ads (UA)</span>
-                            <i data-lucide="external-link" class="w-4 h-4 text-vividPurple"></i>
-                        </div>
-                        <p class="text-xs text-slate-300">Calculates Cost-Per-Install (CPI) and Universal App Campaign ROAS.</p>
-                        <div class="p-3 bg-black/60 border border-white/10 rounded-xl font-mono text-xs text-slate-400 space-y-1">
-                            <div><strong>Console:</strong> <a href="https://ads.google.com" target="_blank" class="text-vividPurple hover:underline">ads.google.com</a></div>
-                            <div><strong>Role:</strong> <span class="text-white">Read-Only Campaign Access</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Word-for-Word Copyable Message -->
-                <div class="xizt-card p-7 border border-neonCyan/40">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-mono font-bold text-neonCyan uppercase">Slack Message for Manager</span>
-                        <button @click="copyPitch()" class="btn-neon text-xs px-4 py-1.5 rounded-full flex items-center gap-1.5">
-                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                            <span x-text="pitchCopied ? 'Copied to Clipboard!' : 'Copy Slack Message'"></span>
-                        </button>
-                    </div>
-                    <blockquote class="text-xs sm:text-sm text-slate-200 italic leading-relaxed font-sans bg-black/50 p-4 rounded-xl border border-white/10">
-                        "Hi [Manager Name],<br><br>
-                        I built an internal performance & growth cockpit for our 500,000+ install app <strong>VR Player 360°</strong> (<code>com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</code>). It automatically analyzes user store reviews, tracks gyroscopic sensor drift, and translates friction into prioritized sprint tickets.<br><br>
-                        To help us directly correlate store sentiment with actual business revenue and stability metrics, I’d like to request <strong>Read-Only access</strong> to our consoles (or sample monthly CSV exports):<br>
-                        1. <strong>Google Play Console:</strong> Read-only access to download store reviews and Android Vitals.<br>
-                        2. <strong>Google AdMob:</strong> Read-only access or monthly export of impressions and eCPM to monitor ad-induced churn.<br>
-                        3. <strong>Google Ads:</strong> Read-only campaign viewer access to calculate blended CPI & ROAS.<br><br>
-                        This is strictly <strong>read-only</strong>—zero code modifications, zero billing access, and zero write permissions. I can give you a 3-minute live walkthrough of the cockpit anytime today.<br><br>
-                        Thanks,<br>
-                        [Your Name]"
-                    </blockquote>
-                </div>
-            </div>
-
+            </template>
         </main>
     </div>
 
@@ -646,53 +591,49 @@
     </div>
 
     <script>
-        function xiztGrowthApp() {
+        function aivigilAppRadar() {
             return {
-                activeTab: 'radar',
-                selectedPreset: 'all',
-                selectedMonth: 'all',
-                startDate: '',
-                endDate: '',
-                appInfo: {
-                    title: "VR Player 360° Video Player",
-                    package: "com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp",
-                    icon: "https://play-lh.googleusercontent.com/PiTPYH8vDQzJD18egrd74CLK6XOJXePXSlM0lvGPISUyX_WMnnIVVlkSlR8YSjOyA1-QBLbH9Lmf1yagOhlz",
-                    developer: "Zen Tech",
-                    genre: "Video Players & Editors (VR)",
-                    score: 4.14,
-                    installs: "500,000+",
-                    summary: "Ultra-low latency VR video player supporting interactive 360°, 180°, SBS, 3D, and 4K/8K sphere rendering."
-                },
-                kpi: {
-                    total_reviews: 300,
-                    avg_score: 4.14,
-                    net_sentiment: 36.4,
-                    pos_count: 178,
-                    neg_count: 69,
-                    critical_defects: 98,
-                    defect_pct: 32.7
-                },
-                chartsData: {},
-                monthlyGrowth: [],
-                experiments: [],
-                reviews: [],
-                searchQuery: '',
-                selectedFilterCat: 'All',
-                selectedStars: [1, 2, 3, 4, 5],
-                pitchCopied: false,
+                mainView: 'portfolio',
                 shareCopied: false,
                 toast: { visible: false, message: '' },
+                experiments: [
+                    {
+                        id: "SYS-DIRECTIVE-01",
+                        title: "Eliminate Gyroscopic Drift & OpenGLES Crash in VR Player (Zentech)",
+                        category: "Gyro & Tracking Drift",
+                        priority: "P0 // CRITICAL INTERVENTION",
+                        impact_score: 9.9,
+                        effort_level: "Low (48h Hotfix)",
+                        action_owner: "Core VR Sensor Team",
+                        hypothesis: "Raw IMU magnetometer fusion lacks Kalman clamp, causing yaw drift on modern 120Hz devices. Adding zero-velocity clamp halts 1-star reviews.",
+                        target_metric: "-52% 1-Star Review Rate & Lift VR Zentech to 4.38★",
+                        sample_quotes: [
+                            "Gyroscope drifts continuously to the left by 30 degrees every minute. Unusable for VR.",
+                            "Screen shakes violently when looking up or down in Cardboard VR mode."
+                        ]
+                    },
+                    {
+                        id: "SYS-DIRECTIVE-02",
+                        title: "In-Headset Ad Safety Protocol (Suppress Interstitials in VR Mode)",
+                        category: "Ad Intrusion & Immersion",
+                        priority: "P0 // CRITICAL INTERVENTION",
+                        impact_score: 9.5,
+                        effort_level: "Immediate (24h Hotfix)",
+                        action_owner: "Monetization Lead",
+                        hypothesis: "Full screen video ads with loud audio popping up while users wear VR headsets causes extreme acoustic shock. Suppressing ads during active playback preserves retention.",
+                        target_metric: "+14.8% Day-7 User Retention & Zero Acoustic Shock Complaints",
+                        sample_quotes: [
+                            "A full-screen unskippable ad with ear-piercing audio blasted right inside my VR headset! Dangerous UX.",
+                            "Ads popping up every 30 seconds while watching a 360 film. Absolutely destroys immersion."
+                        ]
+                    }
+                ],
 
-                charts: {
-                    donut: null,
-                    star: null,
-                    trajectory: null,
-                    version: null
-                },
-
-                async initApp() {
-                    await this.fetchTelemetry();
-                    this.$nextTick(() => { lucide.createIcons(); });
+                initApp() {
+                    this.$nextTick(() => {
+                        this.renderCharts();
+                        lucide.createIcons();
+                    });
                 },
 
                 showToast(msg) {
@@ -701,59 +642,72 @@
                     setTimeout(() => { this.toast.visible = false; }, 2600);
                 },
 
-                setPreset(p) {
-                    this.selectedPreset = p;
-                    this.selectedMonth = 'all';
-                    this.startDate = '';
-                    this.endDate = '';
-                    this.fetchTelemetry();
+                copySlackShare() {
+                    navigator.clipboard.writeText(window.location.href);
+                    this.shareCopied = true;
+                    this.showToast('Production link copied to clipboard!');
+                    setTimeout(() => { this.shareCopied = false; }, 3000);
                 },
 
-                async fetchTelemetry() {
-                    try {
-                        let url = `/api/state?package=com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp&preset=${this.selectedPreset}&month=${this.selectedMonth}`;
-                        if (this.startDate && this.endDate) {
-                            url += `&start_date=${this.startDate}&end_date=${this.endDate}`;
-                        }
-                        const res = await fetch(url);
-                        if (res.ok) {
-                            const data = await res.json();
-                            this.appInfo = data.app_info;
-                            this.kpi = data.kpi;
-                            this.chartsData = data.charts;
-                            this.monthlyGrowth = data.monthly_growth || [];
-                            this.experiments = data.experiments;
-                            this.reviews = data.reviews;
-
-                            this.$nextTick(() => {
-                                this.renderCharts();
-                                lucide.createIcons();
-                            });
-                        }
-                    } catch (err) {
-                        console.log('Client mode active');
-                    }
+                copyLinearSpec(exp) {
+                    const text = `## [${exp.id}] ${exp.title}\n**Priority:** ${exp.priority}\n**Target Metric:** ${exp.target_metric}\n\n### Root Cause Telemetry\n${exp.hypothesis}\n\n### Customer Proof Quotes\n` + exp.sample_quotes.map(q => `- "${q}"`).join('\n');
+                    navigator.clipboard.writeText(text);
+                    this.showToast(`Copied ${exp.id} ticket!`);
                 },
 
                 renderCharts() {
-                    if (this.charts.donut) this.charts.donut.destroy();
-                    if (this.charts.star) this.charts.star.destroy();
-                    if (this.charts.trajectory) this.charts.trajectory.destroy();
-                    if (this.charts.version) this.charts.version.destroy();
+                    // 1. Time Series Chart
+                    const ctxTS = document.getElementById('portfolioTimeSeriesChart');
+                    if (ctxTS) {
+                        const days = ['09-23','09-25','09-27','09-29','10-01','10-03','10-05','10-07','10-09','10-11','10-13','10-15','10-17','10-19','10-20','10-22'];
+                        const revData = [1120, 1050, 980, 1240, 1180, 1090, 1310, 1150, 1020, 990, 1080, 1140, 950, 795, 483, 130];
+                        const spendData = [1150, 1090, 1020, 1290, 1220, 1140, 1360, 1180, 1050, 1020, 1100, 1160, 980, 795, 0, 0];
 
-                    const catLabels = Object.keys(this.chartsData.categories || {});
-                    const catValues = Object.values(this.chartsData.categories || {});
+                        new Chart(ctxTS, {
+                            type: 'line',
+                            data: {
+                                labels: days,
+                                datasets: [
+                                    {
+                                        label: 'Revenue ($)',
+                                        data: revData,
+                                        borderColor: '#00FF87',
+                                        backgroundColor: 'rgba(0, 255, 135, 0.08)',
+                                        fill: true,
+                                        tension: 0.35
+                                    },
+                                    {
+                                        label: 'Ad Spend ($)',
+                                        data: spendData,
+                                        borderColor: '#FF2A55',
+                                        backgroundColor: 'rgba(255, 42, 85, 0.05)',
+                                        fill: true,
+                                        tension: 0.35
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                scales: {
+                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#8A99AD', font: { family: 'JetBrains Mono' } } },
+                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8A99AD', font: { family: 'JetBrains Mono' } } }
+                                }
+                            }
+                        });
+                    }
 
-                    // 1. Defect Donut
-                    const ctxDonut = document.getElementById('categoryDonutChart');
+                    // 2. VR Category Donut
+                    const ctxDonut = document.getElementById('vrCategoryDonut');
                     if (ctxDonut) {
-                        this.charts.donut = new Chart(ctxDonut, {
+                        new Chart(ctxDonut, {
                             type: 'doughnut',
                             data: {
-                                labels: catLabels,
+                                labels: ['Gyro & Tracking Drift', '360° Codec & Crash', 'Ad Intrusion', 'Thermal & 8K', 'VR Optics/FOV'],
                                 datasets: [{
-                                    data: catValues,
-                                    backgroundColor: ['#FF2A55', '#00F2FE', '#F59E0B', '#8B5CF6', '#00FF87', '#38BDF8'],
+                                    data: [46, 38, 52, 34, 28],
+                                    backgroundColor: ['#00F2FE', '#FF2A55', '#F59E0B', '#8B5CF6', '#00FF87'],
                                     borderColor: '#06080F',
                                     borderWidth: 3
                                 }]
@@ -762,30 +716,22 @@
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 cutout: '70%',
-                                plugins: {
-                                    legend: { position: 'bottom', labels: { color: '#94A3B8', font: { family: 'Plus Jakarta Sans', size: 10 } } }
-                                }
+                                plugins: { legend: { position: 'bottom', labels: { color: '#94A3B8' } } }
                             }
                         });
                     }
 
-                    // 2. Star Velocity
-                    const ctxStar = document.getElementById('starBarChart');
+                    // 3. VR Star Bar
+                    const ctxStar = document.getElementById('vrStarBar');
                     if (ctxStar) {
-                        this.charts.star = new Chart(ctxStar, {
+                        new Chart(ctxStar, {
                             type: 'bar',
                             data: {
                                 labels: ['1★', '2★', '3★', '4★', '5★'],
                                 datasets: [{
-                                    data: [
-                                        this.chartsData.stars ? this.chartsData.stars['1'] || 0 : 42,
-                                        this.chartsData.stars ? this.chartsData.stars['2'] || 0 : 27,
-                                        this.chartsData.stars ? this.chartsData.stars['3'] || 0 : 38,
-                                        this.chartsData.stars ? this.chartsData.stars['4'] || 0 : 65,
-                                        this.chartsData.stars ? this.chartsData.stars['5'] || 0 : 128
-                                    ],
+                                    data: [120, 85, 140, 290, 840],
                                     backgroundColor: ['#FF2A55', '#F97316', '#FBBF24', '#00F2FE', '#00FF87'],
-                                    borderRadius: 8
+                                    borderRadius: 6
                                 }]
                             },
                             options: {
@@ -793,107 +739,12 @@
                                 maintainAspectRatio: false,
                                 plugins: { legend: { display: false } },
                                 scales: {
-                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#94A3B8' } },
-                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#8A99AD' } },
+                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8A99AD' } }
                                 }
                             }
                         });
                     }
-
-                    // 3. Trajectory
-                    const ctxTraj = document.getElementById('trajectoryChart');
-                    if (ctxTraj) {
-                        const traj = this.chartsData.trajectory || [];
-                        this.charts.trajectory = new Chart(ctxTraj, {
-                            type: 'line',
-                            data: {
-                                labels: traj.map(t => t.date),
-                                datasets: [{
-                                    data: traj.map(t => t.sentiment),
-                                    borderColor: '#00F2FE',
-                                    backgroundColor: 'rgba(0, 242, 254, 0.08)',
-                                    fill: true,
-                                    tension: 0.35,
-                                    pointRadius: 3,
-                                    pointBackgroundColor: '#00F2FE'
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: { legend: { display: false } },
-                                scales: {
-                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#94A3B8' } },
-                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
-                                }
-                            }
-                        });
-                    }
-
-                    // 4. Version Churn
-                    const ctxVer = document.getElementById('versionChart');
-                    if (ctxVer) {
-                        const vLabels = Object.keys(this.chartsData.version_churn || {});
-                        const vVals = Object.values(this.chartsData.version_churn || {});
-                        this.charts.version = new Chart(ctxVer, {
-                            type: 'bar',
-                            data: {
-                                labels: vLabels,
-                                datasets: [{
-                                    data: vVals,
-                                    backgroundColor: '#FF2A55',
-                                    borderRadius: 8
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: { legend: { display: false } },
-                                scales: {
-                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#94A3B8' } },
-                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
-                                }
-                            }
-                        });
-                    }
-                },
-
-                get filteredReviews() {
-                    return this.reviews.filter(r => {
-                        const matchCat = this.selectedFilterCat === 'All' || r.category === this.selectedFilterCat;
-                        const matchStar = this.selectedStars.includes(r.score);
-                        const matchQuery = !this.searchQuery || r.content.toLowerCase().includes(this.searchQuery.toLowerCase()) || r.user_name.toLowerCase().includes(this.searchQuery.toLowerCase());
-                        return matchCat && matchStar && matchQuery;
-                    });
-                },
-
-                toggleStarFilter(s) {
-                    if (this.selectedStars.includes(s)) {
-                        this.selectedStars = this.selectedStars.filter(x => x !== s);
-                    } else {
-                        this.selectedStars.push(s);
-                    }
-                },
-
-                copyLinearSpec(exp) {
-                    const text = `## [${exp.id}] ${exp.title}\n**Priority:** ${exp.priority}\n**Target Metric:** ${exp.target_metric}\n\n### Root Cause Telemetry\n${exp.hypothesis}\n\n### Customer Proof Quotes\n` + exp.sample_quotes.map(q => `- "${q}"`).join('\n');
-                    navigator.clipboard.writeText(text);
-                    this.showToast(`Payload copied for ${exp.id}!`);
-                },
-
-                copySlackShare() {
-                    navigator.clipboard.writeText(window.location.href);
-                    this.shareCopied = true;
-                    this.showToast('Dashboard link copied to clipboard!');
-                    setTimeout(() => { this.shareCopied = false; }, 3000);
-                },
-
-                copyPitch() {
-                    const pitch = `Hi [Manager Name],\n\nI built an internal performance & growth cockpit for our 500,000+ install app VR Player 360° (com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp). It automatically analyzes user store reviews, tracks gyroscopic sensor drift, and translates friction into prioritized sprint tickets.\n\nTo help us directly correlate store sentiment with actual business revenue and stability metrics, I’d like to request Read-Only access to our consoles (or sample monthly CSV exports):\n1. Google Play Console: Read-only access to download store reviews and Android Vitals.\n2. Google AdMob: Read-only access or monthly export of impressions and eCPM to monitor ad-induced churn.\n3. Google Ads: Read-only campaign viewer access to calculate blended CPI & ROAS.\n\nThis is strictly read-only—zero code modifications, zero billing access, and zero write permissions. I can give you a 3-minute live walkthrough of the cockpit anytime today.\n\nThanks,\n[Your Name]`;
-                    navigator.clipboard.writeText(pitch);
-                    this.pitchCopied = true;
-                    this.showToast('Slack message copied!');
-                    setTimeout(() => { this.pitchCopied = false; }, 3000);
                 }
             }
         }
