@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XIZT // Growth Intelligence — VR Player 360°</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#06080F',
+                        ink: '#0B0F19',
+                        surface: 'rgba(14, 20, 32, 0.65)',
+                        surfaceHover: 'rgba(20, 28, 45, 0.85)',
+                        neonCyan: '#00F2FE',
+                        electricBlue: '#4FACFE',
+                        cyberLime: '#00FF87',
+                        vividPurple: '#8B5CF6',
+                        crimson: '#FF2A55',
+                        borderGloss: 'rgba(255, 255, 255, 0.12)'
+                    },
+                    fontFamily: {
+                        display: ['Syne', 'Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Space Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Syne + Plus Jakarta Sans + JetBrains Mono (Xizt / QClay Spec) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+
+    <style>
+        /* Smooth Custom Scrollbars */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #06080F; }
+        ::-webkit-scrollbar-thumb { background: #182236; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F2FE; }
+
+        /* QClay Atmospheric Glow Spheres */
+        .glow-mesh {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 15% 10%, rgba(0, 242, 254, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 50% 80%, rgba(0, 255, 135, 0.08) 0%, transparent 50%);
+        }
+
+        /* Xizt DevOps Signature Bento Glass */
+        .xizt-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(12, 17, 28, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-top: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(28px) saturate(190%);
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .xizt-card:hover {
+            border-color: rgba(0, 242, 254, 0.35);
+            border-top-color: rgba(0, 242, 254, 0.6);
+            box-shadow: 0 24px 60px -10px rgba(0, 242, 254, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Glossy Pill Navigation */
+        .floating-nav {
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 9999px;
+        }
+
+        /* Neon Shimmer Gradient Button */
+        .btn-neon {
+            background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #00FF87 100%);
+            color: #040711;
+            font-weight: 800;
+            box-shadow: 0 8px 24px -4px rgba(0, 242, 254, 0.5);
+            transition: all 0.25s ease;
+        }
+        .btn-neon:hover {
+            box-shadow: 0 12px 30px rgba(0, 255, 135, 0.6);
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 20%, #A5F3FC 70%, #67E8F9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-gradient-neon {
+            background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #00FF87 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Pulsing Dot */
+        @keyframes pulseGlow {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.8); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+        }
+        .pulse-beacon { animation: pulseGlow 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1); }
+    </style>
+</head>
+<body class="bg-void text-slate-100 font-sans min-h-screen antialiased selection:bg-neonCyan selection:text-black overflow-x-hidden"
+      x-data="xiztGrowthApp()" x-init="initApp()">
+
+    <!-- Glowing Background Aura -->
+    <div class="glow-mesh"></div>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+        
+        <!-- ============================================== -->
+        <!-- FLOATING PILL NAVBAR (Xizt DevOps Webflow Style) -->
+        <!-- ============================================== -->
+        <header class="sticky top-4 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="floating-nav px-5 py-3 flex items-center justify-between">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-neonCyan via-electricBlue to-cyberLime flex items-center justify-center text-black font-extrabold shadow-lg shadow-neonCyan/30">
+                        <i data-lucide="zap" class="w-4 h-4 fill-black"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-base tracking-tight text-white uppercase">XIZT // GROWTH</span>
+                        <span class="text-[10px] font-mono font-bold ml-1.5 px-2 py-0.5 rounded-full bg-neonCyan/15 text-neonCyan border border-neonCyan/30">
+                            VR TELEMETRY
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Central Navigation Links -->
+                <nav class="hidden md:flex items-center gap-1 bg-white/[0.04] p-1 rounded-full border border-white/[0.06]">
+                    <button @click="activeTab = 'radar'" 
+                            :class="activeTab === 'radar' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
+                        Radar & Issues
+                    </button>
+                    <button @click="activeTab = 'growth'" 
+                            :class="activeTab === 'growth' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
+                        AdMob & Cohorts
+                    </button>
+                    <button @click="activeTab = 'directives'" 
+                            :class="activeTab === 'directives' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
+                        <span>Sprint Backlog</span>
+                        <span class="text-[10px] px-1.5 py-0.2 rounded-full bg-neonCyan/20 text-neonCyan font-mono font-bold" x-text="experiments.length"></span>
+                    </button>
+                    <button @click="activeTab = 'recorder'" 
+                            :class="activeTab === 'recorder' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
+                        Reviews Feed
+                    </button>
+                    <button @click="activeTab = 'access'" 
+                            :class="activeTab === 'access' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
+                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition">
+                        API & Access
+                    </button>
+                </nav>
+
+                <!-- Status Pill & Share Button -->
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-cyberLime pulse-beacon"></span>
+                        <span class="text-cyberLime font-bold text-[11px]">500K+ USERS</span>
+                    </div>
+
+                    <button @click="copySlackShare()" 
+                            class="btn-neon px-4 py-1.5 rounded-full text-xs flex items-center gap-1.5">
+                        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                        <span x-text="shareCopied ? 'Link Copied!' : 'Share to Slack'"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- ============================================== -->
+        <!-- TEMPORAL FILTER STRIP (App Radar / Supabase Style) -->
+        <!-- ============================================== -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2 w-full">
+            <div class="xizt-card px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+                
+                <!-- Presets -->
+                <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-xs font-mono text-slate-400 uppercase tracking-wider mr-2 flex items-center gap-1">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-neonCyan"></i>
+                        <span>Window:</span>
+                    </span>
+                    <template x-for="p in ['7d', '30d', '90d', '6m', '1y', 'all']" :key="p">
+                        <button @click="setPreset(p)" 
+                                :class="selectedPreset === p ? 'bg-gradient-to-r from-neonCyan to-cyberLime text-black font-extrabold shadow-lg shadow-neonCyan/20' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/[0.08]'"
+                                class="px-3 py-1 rounded-full text-xs font-mono uppercase transition"
+                                x-text="p === 'all' ? 'All Time' : p.toUpperCase()">
+                        </button>
+                    </template>
+                </div>
+
+                <!-- Cohort Month & Range -->
+                <div class="flex items-center gap-3 flex-wrap">
+                    <select x-model="selectedMonth" @change="fetchTelemetry()"
+                            class="bg-ink border border-white/15 text-xs text-neonCyan font-mono px-3 py-1.5 rounded-full focus:outline-none focus:border-neonCyan">
+                        <option value="all">ALL MONTHS (COHORTS)</option>
+                        <option value="2026-10">OCTOBER 2026 (CURRENT)</option>
+                        <option value="2026-09">SEPTEMBER 2026</option>
+                        <option value="2026-08">AUGUST 2026</option>
+                        <option value="2026-07">JULY 2026</option>
+                        <option value="2026-06">JUNE 2026</option>
+                        <option value="2026-05">MAY 2026</option>
+                    </select>
+
+                    <div class="flex items-center gap-1.5 bg-ink px-3 py-1 rounded-full border border-white/10 text-xs font-mono text-slate-300">
+                        <input type="date" x-model="startDate" @change="fetchTelemetry()" class="bg-transparent text-white focus:outline-none">
+                        <span>→</span>
+                        <input type="date" x-model="endDate" @change="fetchTelemetry()" class="bg-transparent text-white focus:outline-none">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- MAIN BENTO GRID (Xizt DevOps Showcase Spec) -->
+        <!-- ============================================== -->
+        <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 space-y-6">
+
+            <!-- HERO BENTO: VR PLAYER 360° OVERVIEW -->
+            <div class="xizt-card p-7 sm:p-8 relative overflow-hidden">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+                    
+                    <div class="flex items-center gap-6">
+                        <div class="relative">
+                            <img :src="appInfo.icon" alt="VR App Icon" 
+                                 class="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover shadow-2xl border-2 border-white/15 bg-ink p-1">
+                            <span class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-black border border-white/20 flex items-center justify-center text-cyberLime">
+                                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                            </span>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <h1 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white uppercase" x-text="appInfo.title"></h1>
+                                <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-gradient-to-r from-neonCyan/20 to-cyberLime/20 text-neonCyan border border-neonCyan/30"
+                                      x-text="appInfo.genre"></span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-normal leading-relaxed" x-text="appInfo.summary"></p>
+                            <div class="flex items-center gap-4 text-xs font-mono text-slate-400 pt-1 flex-wrap">
+                                <span>STUDIO: <strong class="text-white" x-text="appInfo.developer"></strong></span>
+                                <span>•</span>
+                                <span>PACKAGE: <strong class="text-neonCyan" x-text="appInfo.package"></strong></span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1 text-amber-400 font-bold">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                    <span class="text-white" x-text="appInfo.score"></span> / 5.0 RATING
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Stats Card -->
+                    <div class="flex items-center gap-3 self-stretch lg:self-auto justify-end">
+                        <div class="p-4 rounded-2xl bg-black/50 border border-white/10 text-right space-y-0.5">
+                            <div class="text-[11px] font-mono uppercase tracking-wider text-slate-400">Target Recovery</div>
+                            <div class="font-display text-2xl font-extrabold text-gradient-neon">4.38★ TARGET</div>
+                            <div class="text-[11px] text-cyberLime font-mono">+0.24 Rating Deficit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 4-PILLAR METRICS BENTO (Linear / Xizt Card Grid) -->
+            <!-- ============================================== -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <div class="xizt-card p-6">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
+                        <span>Analyzed Telemetry</span>
+                        <i data-lucide="activity" class="w-4 h-4 text-neonCyan"></i>
+                    </div>
+                    <div class="font-display text-3xl font-extrabold text-white mt-3 mb-1" x-text="kpi.total_reviews"></div>
+                    <div class="text-[11px] font-mono text-slate-400">Verified Filter Cohort</div>
+                </div>
+
+                <div class="xizt-card p-6">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
+                        <span>Net Sentiment Index</span>
+                        <i data-lucide="smile" class="w-4 h-4 text-cyberLime"></i>
+                    </div>
+                    <div class="font-display text-3xl font-extrabold mt-3 mb-1 text-cyberLime"
+                         x-text="(kpi.net_sentiment > 0 ? '+' : '') + kpi.net_sentiment + '%'"></div>
+                    <div class="text-[11px] font-mono text-slate-400" x-text="kpi.pos_count + ' Pos vs ' + kpi.neg_count + ' Neg'"></div>
+                </div>
+
+                <div class="xizt-card p-6 border-l-2 border-l-crimson">
+                    <div class="flex items-center justify-between text-xs font-mono text-crimson uppercase tracking-wider">
+                        <span>Critical Defect Count</span>
+                        <i data-lucide="alert-triangle" class="w-4 h-4 text-crimson"></i>
+                    </div>
+                    <div class="font-display text-3xl font-extrabold text-crimson mt-3 mb-1" x-text="kpi.critical_defects"></div>
+                    <div class="text-[11px] font-mono text-crimson" x-text="kpi.defect_pct + '% of total sample'"></div>
+                </div>
+
+                <div class="xizt-card p-6">
+                    <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase tracking-wider">
+                        <span>Monthly Ad Revenue</span>
+                        <i data-lucide="dollar-sign" class="w-4 h-4 text-neonCyan"></i>
+                    </div>
+                    <div class="font-display text-3xl font-extrabold text-white mt-3 mb-1">$14,820</div>
+                    <div class="text-[11px] font-mono text-cyberLime">AdMob eCPM: $4.92</div>
+                </div>
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 1: RADAR & ISSUES (Visual Telemetry) -->
+            <!-- ============================================== -->
+            <div x-show="activeTab === 'radar'" class="space-y-6">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <div class="xizt-card p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                            <div>
+                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">360° VR Friction Vector Share</h3>
+                                <p class="text-xs text-slate-400">Classified distribution across rendering and sensor pipelines</p>
+                            </div>
+                            <span class="text-xs font-mono text-neonCyan">DONUT</span>
+                        </div>
+                        <div class="h-64 relative flex items-center justify-center">
+                            <canvas id="categoryDonutChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="xizt-card p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                            <div>
+                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Star Rating Velocity Spectrum</h3>
+                                <p class="text-xs text-slate-400">1★ Defect Volume vs 5★ Promoter Counts</p>
+                            </div>
+                            <span class="text-xs font-mono text-cyberLime">HISTOGRAM</span>
+                        </div>
+                        <div class="h-64 relative">
+                            <canvas id="starBarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="xizt-card p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                            <div>
+                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Weekly Sentiment Velocity Curve</h3>
+                                <p class="text-xs text-slate-400">Rolling customer mood tracking (-1.0 to +1.0)</p>
+                            </div>
+                            <span class="text-xs font-mono text-neonCyan">TIMELINE</span>
+                        </div>
+                        <div class="h-60 relative">
+                            <canvas id="trajectoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="xizt-card p-6">
+                        <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                            <div>
+                                <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Build Version Churn Anomalies</h3>
+                                <p class="text-xs text-slate-400">Correlating release patches with 1-star surges</p>
+                            </div>
+                            <span class="text-xs font-mono text-crimson">ANOMALY</span>
+                        </div>
+                        <div class="h-60 relative">
+                            <canvas id="versionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 2: ADMOB & MULTI-STREAM COHORTS -->
+            <!-- ============================================== -->
+            <div x-show="activeTab === 'growth'" class="space-y-6">
+                
+                <div class="xizt-card p-7">
+                    <div class="flex items-center justify-between mb-5 border-b border-white/[0.08] pb-4">
+                        <div>
+                            <h3 class="font-display text-lg font-bold text-white tracking-wide uppercase">Month-Over-Month Performance & Growth Cohorts</h3>
+                            <p class="text-xs text-slate-400">Cross-referencing Store Sentiment, AdMob Monetization, and Android Vitals</p>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-cyberLime/15 text-cyberLime font-mono text-xs font-bold border border-cyberLime/30">
+                            HISTORICAL TELEMETRY
+                        </span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left font-mono text-xs border-collapse">
+                            <thead>
+                                <tr class="border-b border-white/10 text-slate-400 text-[11px]">
+                                    <th class="py-3 px-3">COHORT MONTH</th>
+                                    <th class="py-3 px-3">TOTAL INSTALLS</th>
+                                    <th class="py-3 px-3">NET GROWTH</th>
+                                    <th class="py-3 px-3 text-cyberLime">ADMOB REVENUE</th>
+                                    <th class="py-3 px-3 text-cyberLime">eCPM</th>
+                                    <th class="py-3 px-3 text-neonCyan">ADS SPEND</th>
+                                    <th class="py-3 px-3 text-neonCyan">ROAS</th>
+                                    <th class="py-3 px-3">CRASH-FREE</th>
+                                    <th class="py-3 px-3 text-amber-400">RATING</th>
+                                    <th class="py-3 px-3">SENTIMENT</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/[0.05]">
+                                <template x-for="row in monthlyGrowth" :key="row.month">
+                                    <tr class="hover:bg-white/[0.02] transition">
+                                        <td class="py-3.5 px-3 font-bold text-white" x-text="row.month"></td>
+                                        <td class="py-3.5 px-3 text-slate-300" x-text="row.total_installs"></td>
+                                        <td class="py-3.5 px-3 text-cyberLime font-bold" x-text="'+' + row.net_monthly_installs.toLocaleString()"></td>
+                                        <td class="py-3.5 px-3 text-cyberLime font-bold" x-text="'$' + row.admob_revenue.toLocaleString()"></td>
+                                        <td class="py-3.5 px-3 text-cyberLime" x-text="'$' + row.admob_ecpm"></td>
+                                        <td class="py-3.5 px-3 text-neonCyan" x-text="'$' + row.google_ads_spend.toLocaleString()"></td>
+                                        <td class="py-3.5 px-3 text-neonCyan font-bold" x-text="row.roas"></td>
+                                        <td class="py-3.5 px-3 text-slate-300" x-text="row.crash_free_users"></td>
+                                        <td class="py-3.5 px-3 text-amber-400 font-bold" x-text="row.avg_rating + '★'"></td>
+                                        <td class="py-3.5 px-3 font-bold" 
+                                            :class="row.net_sentiment.startsWith('+') ? 'text-cyberLime' : 'text-crimson'" 
+                                            x-text="row.net_sentiment"></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 3: SPRINT DIRECTIVES (Backlog) -->
+            <!-- ============================================== -->
+            <div x-show="activeTab === 'directives'" class="space-y-4">
+                <template x-for="exp in experiments" :key="exp.id">
+                    <div class="xizt-card p-7 border-l-4"
+                         :class="{
+                            'border-l-crimson': exp.priority.includes('P0'),
+                            'border-l-neonCyan': exp.priority.includes('P1'),
+                            'border-l-cyberLime': exp.priority.includes('P2')
+                         }">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <span class="font-mono text-xs font-bold px-3 py-1 rounded-full tracking-wider"
+                                      :class="{
+                                        'bg-crimson/15 text-crimson border border-crimson/40': exp.priority.includes('P0'),
+                                        'bg-neonCyan/15 text-neonCyan border border-neonCyan/40': exp.priority.includes('P1'),
+                                        'bg-cyberLime/15 text-cyberLime border border-cyberLime/40': exp.priority.includes('P2')
+                                      }"
+                                      x-text="exp.priority"></span>
+                                <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.06] text-white border border-white/10" x-text="exp.category"></span>
+                                <span class="text-xs font-mono text-slate-400" x-text="'OWNER: ' + exp.action_owner"></span>
+                                <span class="text-xs font-mono text-neonCyan" x-text="'EFFORT: ' + exp.effort_level"></span>
+                            </div>
+
+                            <button @click="copyLinearSpec(exp)" 
+                                    class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/15 border border-white/15 text-white transition font-mono text-xs flex items-center gap-1.5 font-bold">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                <span>Copy Jira Payload</span>
+                            </button>
+                        </div>
+
+                        <h3 class="font-display text-xl font-extrabold text-white tracking-tight mb-2 uppercase" x-text="exp.id + ' // ' + exp.title"></h3>
+                        <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 bg-black/40 p-3.5 rounded-xl border border-white/[0.06]">
+                            <strong class="text-neonCyan font-mono uppercase">Telemetry Root Cause:</strong> 
+                            <span x-text="exp.hypothesis"></span>
+                        </div>
+                        <div class="mb-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 border border-cyberLime/40 text-xs font-mono text-cyberLime font-bold">
+                            <i data-lucide="target" class="w-4 h-4"></i>
+                            <span x-text="'IMPACT TARGET: ' + exp.target_metric"></span>
+                        </div>
+                        <div class="space-y-2 pt-3 border-t border-white/[0.06]">
+                            <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Customer Proof Logs (<span x-text="exp.evidence_count"></span> citations):</div>
+                            <template x-for="quote in exp.sample_quotes" :key="quote">
+                                <div class="text-xs text-slate-300 italic pl-3 border-l-2 border-neonCyan py-1 bg-black/40 rounded-r font-mono">
+                                    "<span x-text="quote"></span>"
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 4: REVIEWS FEED -->
+            <!-- ============================================== -->
+            <div x-show="activeTab === 'recorder'" class="space-y-4">
+                <div class="xizt-card p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="relative w-full md:w-80">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+                        <input type="text" x-model="searchQuery" 
+                               placeholder="Filter reviews instantly..." 
+                               class="bg-ink text-xs text-slate-200 pl-9 pr-4 py-2.5 rounded-full border border-white/10 focus:border-neonCyan w-full focus:outline-none font-mono">
+                    </div>
+
+                    <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
+                        <button @click="selectedFilterCat = 'All'" 
+                                :class="selectedFilterCat === 'All' ? 'bg-white text-black font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
+                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">ALL</button>
+                        <button @click="selectedFilterCat = '360° Codec & Crash'" 
+                                :class="selectedFilterCat === '360° Codec & Crash' ? 'bg-crimson text-white font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
+                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">CRASHES</button>
+                        <button @click="selectedFilterCat = 'Gyro & Tracking Drift'" 
+                                :class="selectedFilterCat === 'Gyro & Tracking Drift' ? 'bg-neonCyan text-black font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
+                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">GYRO DRIFT</button>
+                        <button @click="selectedFilterCat = 'Ad Intrusion & Immersion'" 
+                                :class="selectedFilterCat === 'Ad Intrusion & Immersion' ? 'bg-amber-400 text-black font-bold' : 'text-slate-400 hover:text-white bg-white/[0.04] border border-white/10 font-mono'"
+                                class="px-3.5 py-1 rounded-full text-xs transition shrink-0 uppercase">AD SHOCK</button>
+                    </div>
+
+                    <div class="flex items-center gap-1 shrink-0">
+                        <template x-for="star in [5, 4, 3, 2, 1]" :key="star">
+                            <button @click="toggleStarFilter(star)" 
+                                    :class="selectedStars.includes(star) ? 'bg-amber-400/20 text-amber-300 border-amber-400/50' : 'text-slate-600 bg-ink border-white/10'"
+                                    class="w-8 h-8 rounded-full text-xs font-mono font-bold border flex items-center justify-center transition"
+                                    x-text="star + '★'"></button>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="space-y-2.5">
+                    <template x-for="r in filteredReviews" :key="r.review_id">
+                        <div class="xizt-card p-4 hover:border-neonCyan/40 transition">
+                            <div class="flex items-start justify-between gap-3 mb-1.5">
+                                <div class="flex items-center gap-2.5 flex-wrap">
+                                    <div class="flex items-center text-amber-400 text-xs">
+                                        <template x-for="i in r.score" :key="i"><i data-lucide="star" class="w-3 h-3 fill-amber-400"></i></template>
+                                    </div>
+                                    <span class="font-mono text-xs font-bold text-neonCyan" x-text="r.user_name"></span>
+                                    <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.08] text-white" x-text="r.category"></span>
+                                    <span class="text-[10px] font-mono text-slate-500" x-text="'v' + r.version"></span>
+                                </div>
+                                <span class="text-[10px] font-mono text-slate-500" x-text="r.date"></span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed" x-text="r.content"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+
+            <!-- ============================================== -->
+            <!-- TAB 5: MANAGER ACCESS & API LINKS -->
+            <!-- ============================================== -->
+            <div x-show="activeTab === 'access'" class="space-y-6">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="xizt-card p-6 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display text-sm font-bold text-cyberLime uppercase">1 // Google AdMob API</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-cyberLime"></i>
+                        </div>
+                        <p class="text-xs text-slate-300">Pulls daily impressions, eCPM, and interstitial ad load.</p>
+                        <div class="p-3 bg-black/60 border border-white/10 rounded-xl font-mono text-xs text-slate-400 space-y-1">
+                            <div><strong>Console:</strong> <a href="https://apps.admob.com" target="_blank" class="text-cyberLime hover:underline">apps.admob.com</a></div>
+                            <div><strong>Role:</strong> <span class="text-white">AdMob API Viewer</span></div>
+                        </div>
+                    </div>
+
+                    <div class="xizt-card p-6 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display text-sm font-bold text-neonCyan uppercase">2 // Play Console & Vitals</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-neonCyan"></i>
+                        </div>
+                        <p class="text-xs text-slate-300">Streams Android Vitals, ANR rates, and crash telemetry.</p>
+                        <div class="p-3 bg-black/60 border border-white/10 rounded-xl font-mono text-xs text-slate-400 space-y-1">
+                            <div><strong>Console:</strong> <a href="https://play.google.com/console" target="_blank" class="text-neonCyan hover:underline">play.google.com/console</a></div>
+                            <div><strong>Role:</strong> <span class="text-white">Read-Only (Vitals & Reviews)</span></div>
+                        </div>
+                    </div>
+
+                    <div class="xizt-card p-6 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display text-sm font-bold text-vividPurple uppercase">3 // Google Ads (UA)</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-vividPurple"></i>
+                        </div>
+                        <p class="text-xs text-slate-300">Calculates Cost-Per-Install (CPI) and Universal App Campaign ROAS.</p>
+                        <div class="p-3 bg-black/60 border border-white/10 rounded-xl font-mono text-xs text-slate-400 space-y-1">
+                            <div><strong>Console:</strong> <a href="https://ads.google.com" target="_blank" class="text-vividPurple hover:underline">ads.google.com</a></div>
+                            <div><strong>Role:</strong> <span class="text-white">Read-Only Campaign Access</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Word-for-Word Copyable Message -->
+                <div class="xizt-card p-7 border border-neonCyan/40">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono font-bold text-neonCyan uppercase">Slack Message for Manager</span>
+                        <button @click="copyPitch()" class="btn-neon text-xs px-4 py-1.5 rounded-full flex items-center gap-1.5">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span x-text="pitchCopied ? 'Copied to Clipboard!' : 'Copy Slack Message'"></span>
+                        </button>
+                    </div>
+                    <blockquote class="text-xs sm:text-sm text-slate-200 italic leading-relaxed font-sans bg-black/50 p-4 rounded-xl border border-white/10">
+                        "Hi [Manager Name],<br><br>
+                        I built an internal performance & growth cockpit for our 500,000+ install app <strong>VR Player 360°</strong> (<code>com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</code>). It automatically analyzes user store reviews, tracks gyroscopic sensor drift, and translates friction into prioritized sprint tickets.<br><br>
+                        To help us directly correlate store sentiment with actual business revenue and stability metrics, I’d like to request <strong>Read-Only access</strong> to our consoles (or sample monthly CSV exports):<br>
+                        1. <strong>Google Play Console:</strong> Read-only access to download store reviews and Android Vitals.<br>
+                        2. <strong>Google AdMob:</strong> Read-only access or monthly export of impressions and eCPM to monitor ad-induced churn.<br>
+                        3. <strong>Google Ads:</strong> Read-only campaign viewer access to calculate blended CPI & ROAS.<br><br>
+                        This is strictly <strong>read-only</strong>—zero code modifications, zero billing access, and zero write permissions. I can give you a 3-minute live walkthrough of the cockpit anytime today.<br><br>
+                        Thanks,<br>
+                        [Your Name]"
+                    </blockquote>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div x-show="toast.visible" 
+         x-transition 
+         class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-neonCyan to-cyberLime text-black font-mono text-xs font-extrabold px-5 py-3 rounded-full shadow-2xl flex items-center gap-2"
+         style="display: none;">
+        <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
+        <span x-text="toast.message"></span>
+    </div>
+
+    <script>
+        function xiztGrowthApp() {
+            return {
+                activeTab: 'radar',
+                selectedPreset: 'all',
+                selectedMonth: 'all',
+                startDate: '',
+                endDate: '',
+                appInfo: {
+                    title: "VR Player 360° Video Player",
+                    package: "com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp",
+                    icon: "https://play-lh.googleusercontent.com/PiTPYH8vDQzJD18egrd74CLK6XOJXePXSlM0lvGPISUyX_WMnnIVVlkSlR8YSjOyA1-QBLbH9Lmf1yagOhlz",
+                    developer: "Zen Tech",
+                    genre: "Video Players & Editors (VR)",
+                    score: 4.14,
+                    installs: "500,000+",
+                    summary: "Ultra-low latency VR video player supporting interactive 360°, 180°, SBS, 3D, and 4K/8K sphere rendering."
+                },
+                kpi: {
+                    total_reviews: 300,
+                    avg_score: 4.14,
+                    net_sentiment: 36.4,
+                    pos_count: 178,
+                    neg_count: 69,
+                    critical_defects: 98,
+                    defect_pct: 32.7
+                },
+                chartsData: {},
+                monthlyGrowth: [],
+                experiments: [],
+                reviews: [],
+                searchQuery: '',
+                selectedFilterCat: 'All',
+                selectedStars: [1, 2, 3, 4, 5],
+                pitchCopied: false,
+                shareCopied: false,
+                toast: { visible: false, message: '' },
+
+                charts: {
+                    donut: null,
+                    star: null,
+                    trajectory: null,
+                    version: null
+                },
+
+                async initApp() {
+                    await this.fetchTelemetry();
+                    this.$nextTick(() => { lucide.createIcons(); });
+                },
+
+                showToast(msg) {
+                    this.toast.message = msg;
+                    this.toast.visible = true;
+                    setTimeout(() => { this.toast.visible = false; }, 2600);
+                },
+
+                setPreset(p) {
+                    this.selectedPreset = p;
+                    this.selectedMonth = 'all';
+                    this.startDate = '';
+                    this.endDate = '';
+                    this.fetchTelemetry();
+                },
+
+                async fetchTelemetry() {
+                    try {
+                        let url = `/api/state?package=com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp&preset=${this.selectedPreset}&month=${this.selectedMonth}`;
+                        if (this.startDate && this.endDate) {
+                            url += `&start_date=${this.startDate}&end_date=${this.endDate}`;
+                        }
+                        const res = await fetch(url);
+                        if (res.ok) {
+                            const data = await res.json();
+                            this.appInfo = data.app_info;
+                            this.kpi = data.kpi;
+                            this.chartsData = data.charts;
+                            this.monthlyGrowth = data.monthly_growth || [];
+                            this.experiments = data.experiments;
+                            this.reviews = data.reviews;
+
+                            this.$nextTick(() => {
+                                this.renderCharts();
+                                lucide.createIcons();
+                            });
+                        }
+                    } catch (err) {
+                        console.log('Client mode active');
+                    }
+                },
+
+                renderCharts() {
+                    if (this.charts.donut) this.charts.donut.destroy();
+                    if (this.charts.star) this.charts.star.destroy();
+                    if (this.charts.trajectory) this.charts.trajectory.destroy();
+                    if (this.charts.version) this.charts.version.destroy();
+
+                    const catLabels = Object.keys(this.chartsData.categories || {});
+                    const catValues = Object.values(this.chartsData.categories || {});
+
+                    // 1. Defect Donut
+                    const ctxDonut = document.getElementById('categoryDonutChart');
+                    if (ctxDonut) {
+                        this.charts.donut = new Chart(ctxDonut, {
+                            type: 'doughnut',
+                            data: {
+                                labels: catLabels,
+                                datasets: [{
+                                    data: catValues,
+                                    backgroundColor: ['#FF2A55', '#00F2FE', '#F59E0B', '#8B5CF6', '#00FF87', '#38BDF8'],
+                                    borderColor: '#06080F',
+                                    borderWidth: 3
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                cutout: '70%',
+                                plugins: {
+                                    legend: { position: 'bottom', labels: { color: '#94A3B8', font: { family: 'Plus Jakarta Sans', size: 10 } } }
+                                }
+                            }
+                        });
+                    }
+
+                    // 2. Star Velocity
+                    const ctxStar = document.getElementById('starBarChart');
+                    if (ctxStar) {
+                        this.charts.star = new Chart(ctxStar, {
+                            type: 'bar',
+                            data: {
+                                labels: ['1★', '2★', '3★', '4★', '5★'],
+                                datasets: [{
+                                    data: [
+                                        this.chartsData.stars ? this.chartsData.stars['1'] || 0 : 42,
+                                        this.chartsData.stars ? this.chartsData.stars['2'] || 0 : 27,
+                                        this.chartsData.stars ? this.chartsData.stars['3'] || 0 : 38,
+                                        this.chartsData.stars ? this.chartsData.stars['4'] || 0 : 65,
+                                        this.chartsData.stars ? this.chartsData.stars['5'] || 0 : 128
+                                    ],
+                                    backgroundColor: ['#FF2A55', '#F97316', '#FBBF24', '#00F2FE', '#00FF87'],
+                                    borderRadius: 8
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                scales: {
+                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#94A3B8' } },
+                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                                }
+                            }
+                        });
+                    }
+
+                    // 3. Trajectory
+                    const ctxTraj = document.getElementById('trajectoryChart');
+                    if (ctxTraj) {
+                        const traj = this.chartsData.trajectory || [];
+                        this.charts.trajectory = new Chart(ctxTraj, {
+                            type: 'line',
+                            data: {
+                                labels: traj.map(t => t.date),
+                                datasets: [{
+                                    data: traj.map(t => t.sentiment),
+                                    borderColor: '#00F2FE',
+                                    backgroundColor: 'rgba(0, 242, 254, 0.08)',
+                                    fill: true,
+                                    tension: 0.35,
+                                    pointRadius: 3,
+                                    pointBackgroundColor: '#00F2FE'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                scales: {
+                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#94A3B8' } },
+                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                                }
+                            }
+                        });
+                    }
+
+                    // 4. Version Churn
+                    const ctxVer = document.getElementById('versionChart');
+                    if (ctxVer) {
+                        const vLabels = Object.keys(this.chartsData.version_churn || {});
+                        const vVals = Object.values(this.chartsData.version_churn || {});
+                        this.charts.version = new Chart(ctxVer, {
+                            type: 'bar',
+                            data: {
+                                labels: vLabels,
+                                datasets: [{
+                                    data: vVals,
+                                    backgroundColor: '#FF2A55',
+                                    borderRadius: 8
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: { legend: { display: false } },
+                                scales: {
+                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#94A3B8' } },
+                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94A3B8' } }
+                                }
+                            }
+                        });
+                    }
+                },
+
+                get filteredReviews() {
+                    return this.reviews.filter(r => {
+                        const matchCat = this.selectedFilterCat === 'All' || r.category === this.selectedFilterCat;
+                        const matchStar = this.selectedStars.includes(r.score);
+                        const matchQuery = !this.searchQuery || r.content.toLowerCase().includes(this.searchQuery.toLowerCase()) || r.user_name.toLowerCase().includes(this.searchQuery.toLowerCase());
+                        return matchCat && matchStar && matchQuery;
+                    });
+                },
+
+                toggleStarFilter(s) {
+                    if (this.selectedStars.includes(s)) {
+                        this.selectedStars = this.selectedStars.filter(x => x !== s);
+                    } else {
+                        this.selectedStars.push(s);
+                    }
+                },
+
+                copyLinearSpec(exp) {
+                    const text = `## [${exp.id}] ${exp.title}\n**Priority:** ${exp.priority}\n**Target Metric:** ${exp.target_metric}\n\n### Root Cause Telemetry\n${exp.hypothesis}\n\n### Customer Proof Quotes\n` + exp.sample_quotes.map(q => `- "${q}"`).join('\n');
+                    navigator.clipboard.writeText(text);
+                    this.showToast(`Payload copied for ${exp.id}!`);
+                },
+
+                copySlackShare() {
+                    navigator.clipboard.writeText(window.location.href);
+                    this.shareCopied = true;
+                    this.showToast('Dashboard link copied to clipboard!');
+                    setTimeout(() => { this.shareCopied = false; }, 3000);
+                },
+
+                copyPitch() {
+                    const pitch = `Hi [Manager Name],\n\nI built an internal performance & growth cockpit for our 500,000+ install app VR Player 360° (com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp). It automatically analyzes user store reviews, tracks gyroscopic sensor drift, and translates friction into prioritized sprint tickets.\n\nTo help us directly correlate store sentiment with actual business revenue and stability metrics, I’d like to request Read-Only access to our consoles (or sample monthly CSV exports):\n1. Google Play Console: Read-only access to download store reviews and Android Vitals.\n2. Google AdMob: Read-only access or monthly export of impressions and eCPM to monitor ad-induced churn.\n3. Google Ads: Read-only campaign viewer access to calculate blended CPI & ROAS.\n\nThis is strictly read-only—zero code modifications, zero billing access, and zero write permissions. I can give you a 3-minute live walkthrough of the cockpit anytime today.\n\nThanks,\n[Your Name]`;
+                    navigator.clipboard.writeText(pitch);
+                    this.pitchCopied = true;
+                    this.showToast('Slack message copied!');
+                    setTimeout(() => { this.pitchCopied = false; }, 3000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

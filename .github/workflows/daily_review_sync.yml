@@ -1,0 +1,39 @@
+name: Daily App Store Review Ingestion
+
+on:
+  schedule:
+    # Runs every morning at 03:00 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  scrape-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Background Ingestion
+        env:
+          TARGET_PACKAGE: ${{ vars.TARGET_PACKAGE || 'org.videolan.vlc' }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          python -c "from data_manager import fetch_live_reviews; df, err = fetch_live_reviews('$TARGET_PACKAGE', count=200); print(f'Ingested {len(df)} reviews'); df.to_csv('latest_reviews.csv', index=False)"
+
+      - name: Commit & Push Latest Reviews (Optional Fallback Storage)
+        run: |
+          git config --global user.name 'GrowthRadar-Bot'
+          git config --global user.email 'bot@growthradar.internal'
+          git add latest_reviews.csv || true
+          git commit -m "Auto-sync store reviews [skip ci]" || echo "No changes to commit"
+          git push || echo "Push skipped"
