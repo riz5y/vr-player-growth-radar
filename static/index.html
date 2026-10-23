@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AppRadar // Portfolio & Growth Intelligence — Aivigil MSP</title>
+    <title>AppRadar // Target Asset Intelligence: com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,7 +14,7 @@
                     colors: {
                         void: '#06080F',
                         ink: '#0B0F19',
-                        surface: 'rgba(14, 20, 32, 0.65)',
+                        surface: 'rgba(14, 20, 32, 0.70)',
                         surfaceHover: 'rgba(20, 28, 45, 0.85)',
                         neonCyan: '#00F2FE',
                         electricBlue: '#4FACFE',
@@ -22,7 +22,7 @@
                         vividPurple: '#8B5CF6',
                         crimson: '#FF2A55',
                         amberAlert: '#F59E0B',
-                        borderGloss: 'rgba(255, 255, 255, 0.12)'
+                        borderGloss: 'rgba(255, 255, 255, 0.10)'
                     },
                     fontFamily: {
                         display: ['Syne', 'Plus Jakarta Sans', 'sans-serif'],
@@ -33,7 +33,7 @@
             }
         }
     </script>
-    <!-- Google Fonts: Syne + Plus Jakarta Sans + JetBrains Mono -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
@@ -48,625 +48,923 @@
     <style>
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #06080F; }
-        ::-webkit-scrollbar-thumb { background: #182236; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F2FE; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
 
-        .glow-mesh {
-            position: fixed; inset: 0; pointer-events: none; z-index: 0;
-            background: 
-                radial-gradient(circle at 15% 10%, rgba(0, 242, 254, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.14) 0%, transparent 45%),
-                radial-gradient(circle at 50% 80%, rgba(0, 255, 135, 0.08) 0%, transparent 50%);
+        .glass-panel {
+            background: rgba(13, 17, 28, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
         }
 
-        .xizt-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%), rgba(12, 17, 28, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            border-top: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(28px) saturate(190%);
-            border-radius: 24px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .xizt-card:hover {
+        .glass-panel-hover:hover {
             border-color: rgba(0, 242, 254, 0.35);
-            border-top-color: rgba(0, 242, 254, 0.6);
-            box-shadow: 0 24px 60px -10px rgba(0, 242, 254, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.08);
         }
 
-        .floating-nav {
-            background: rgba(11, 15, 25, 0.75);
-            backdrop-filter: blur(24px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-            border-radius: 9999px;
+        .cyan-glow {
+            box-shadow: 0 0 20px -3px rgba(0, 242, 254, 0.4);
         }
 
-        .btn-neon {
-            background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #00FF87 100%);
-            color: #040711;
-            font-weight: 800;
-            box-shadow: 0 8px 24px -4px rgba(0, 242, 254, 0.5);
-            transition: all 0.25s ease;
-        }
-        .btn-neon:hover {
-            box-shadow: 0 12px 30px rgba(0, 255, 135, 0.6);
-            transform: translateY(-1px) scale(1.02);
+        .emerald-glow {
+            box-shadow: 0 0 20px -3px rgba(0, 255, 135, 0.4);
         }
 
-        .text-gradient-neon {
-            background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 50%, #00FF87 100%);
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #94A3B8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 135, 0.8); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(0, 255, 135, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 135, 0); }
+        .gradient-cyan-blue {
+            background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .pulse-beacon { animation: pulseGlow 2.2s infinite cubic-bezier(0.4, 0, 0.6, 1); }
+
+        input[type=range] {
+            accent-color: #00F2FE;
+        }
     </style>
 </head>
-<body class="bg-void text-slate-100 font-sans min-h-screen antialiased selection:bg-neonCyan selection:text-black overflow-x-hidden"
-      x-data="aivigilAppRadar()" x-init="initApp()">
 
-    <!-- Ambient Glow Mesh -->
-    <div class="glow-mesh"></div>
+<body class="bg-[#06080F] text-slate-100 font-sans min-h-screen antialiased selection:bg-neonCyan/20 selection:text-neonCyan flex flex-col justify-between"
+      x-data="cockpitApp()" x-init="initCharts()">
 
-    <div class="relative z-10 flex flex-col min-h-screen">
-        
-        <!-- ============================================== -->
-        <!-- FLOATING PILL NAVBAR (Aivigil MSP AppRadar Spec) -->
-        <!-- ============================================== -->
-        <header class="sticky top-4 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-            <div class="floating-nav px-5 py-3 flex items-center justify-between">
-                
-                <!-- Logo & Brand -->
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-neonCyan via-electricBlue to-cyberLime flex items-center justify-center text-black font-extrabold shadow-lg shadow-neonCyan/30">
-                        <i data-lucide="layers" class="w-4 h-4 fill-black"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-display font-extrabold text-base tracking-tight text-white uppercase">AppRadar</span>
-                            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/15 text-cyberLime border border-cyberLime/30">
-                                AIVIGIL MSP
-                            </span>
-                        </div>
-                        <p class="text-[10px] text-slate-400 font-mono tracking-wider">PORTFOLIO INTELLIGENCE // v0.3</p>
-                    </div>
+    <!-- TOP HEADER -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-6 py-3.5">
+        <div class="max-w-[1720px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Left Brand & Target App Info -->
+            <div class="flex items-center gap-4">
+                <div class="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-600/30 to-blue-500/20 border border-neonCyan/30">
+                    <img src="https://play-lh.googleusercontent.com/PiTPYH8vDQzJD18egrd74CLK6XOJXePXSlM0lvGPISUyX_WMnnIVVlkSlR8YSjOyA1-QBLbH9Lmf1yagOhlz"
+                         alt="Target App Icon" class="w-9 h-9 rounded-lg object-cover shadow-lg"
+                         onerror="this.src='https://via.placeholder.com/64/00F2FE/000000?text=VR'">
+                    <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-cyberLime rounded-full border-2 border-void animate-pulse"></span>
                 </div>
-
-                <!-- Navigation Tabs -->
-                <nav class="hidden md:flex items-center gap-1 bg-white/[0.04] p-1 rounded-full border border-white/[0.06]">
-                    <button @click="mainView = 'portfolio'" 
-                            :class="mainView === 'portfolio' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
-                        <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-cyberLime"></i>
-                        <span>63-App Portfolio</span>
-                    </button>
-                    
-                    <button @click="mainView = 'vrplayer'" 
-                            :class="mainView === 'vrplayer' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
-                        <i data-lucide="glasses" class="w-3.5 h-3.5 text-neonCyan"></i>
-                        <span>VR Player (Zentech) #1</span>
-                    </button>
-
-                    <button @click="mainView = 'briefing'" 
-                            :class="mainView === 'briefing' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amberAlert"></i>
-                        <span>Claude Synthesis</span>
-                    </button>
-
-                    <button @click="mainView = 'directives'" 
-                            :class="mainView === 'directives' ? 'bg-white/15 text-white font-bold shadow-md' : 'text-slate-400 hover:text-white'"
-                            class="px-4 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5">
-                        <i data-lucide="target" class="w-3.5 h-3.5 text-vividPurple"></i>
-                        <span>Directives</span>
-                    </button>
-                </nav>
-
-                <!-- Admin & Share Action -->
-                <div class="flex items-center gap-3">
-                    <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 text-xs font-mono">
-                        <span class="w-2 h-2 rounded-full bg-cyberLime pulse-beacon"></span>
-                        <span class="text-slate-300 text-[11px]">admin@rmaac</span>
+                
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-bold text-lg text-white tracking-tight">AppRadar</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full font-mono font-semibold bg-neonCyan/10 text-neonCyan border border-neonCyan/30">Target Asset v1.0</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full font-mono bg-cyberLime/10 text-cyberLime border border-cyberLime/30">ROAS: 1.24x</span>
                     </div>
-
-                    <button @click="copySlackShare()" 
-                            class="btn-neon px-4 py-1.5 rounded-full text-xs flex items-center gap-1.5">
-                        <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-                        <span x-text="shareCopied ? 'Link Copied!' : 'Share to Slack'"></span>
-                    </button>
+                    <div class="flex items-center gap-2 mt-0.5">
+                        <span class="text-xs font-semibold text-slate-300">VR Player 360° Video Player</span>
+                        <span class="text-slate-500 text-xs">·</span>
+                        <span class="text-slate-400 text-xs">Zen Tech</span>
+                        <span class="text-slate-500 text-xs">·</span>
+                        <span class="font-mono text-[11px] text-neonCyan bg-neonCyan/5 px-1.5 py-0.5 rounded border border-neonCyan/20">
+                            com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp
+                        </span>
+                    </div>
                 </div>
             </div>
-        </header>
 
+            <!-- Header Action Controls -->
+            <div class="flex items-center gap-3">
+                <a href="https://play.google.com/store/apps/details?id=com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp" target="_blank"
+                   class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5 text-neonCyan"></i>
+                    Play Store Page
+                </a>
 
-        <!-- ============================================== -->
-        <!-- VIEW 1: AIVIGIL 63-APP PORTFOLIO OVERVIEW -->
-        <!-- ============================================== -->
-        <main x-show="mainView === 'portfolio'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+                <button @click="showSlackModal = true"
+                        class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-neonCyan to-electricBlue text-void font-mono font-bold hover:opacity-90 transition cyan-glow">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5 text-void"></i>
+                    Share to Slack
+                </button>
 
-            <!-- Portfolio Header Banner -->
-            <div class="xizt-card p-7 sm:p-8">
-                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                    <div>
-                        <div class="flex items-center gap-2.5">
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyberLime/15 text-cyberLime border border-cyberLime/30 font-bold uppercase">
-                                Active Window: Sep 23 – Oct 23 (30 Days)
-                            </span>
-                            <span class="text-xs font-mono text-slate-400">© 2026 Aivigil MSP</span>
+                <button @click="showManagerAccessModal = true"
+                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 hover:bg-white/10 text-amberAlert border border-amberAlert/30 transition">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                    Manager Access Guide
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <div class="max-w-[1720px] mx-auto w-full px-6 pt-5 pb-2">
+        <div class="flex items-center gap-2 border-b border-white/10 pb-3 overflow-x-auto">
+            <template x-for="tab in tabs" :key="tab.id">
+                <button @click="activeTab = tab.id"
+                        :class="activeTab === tab.id 
+                            ? 'bg-neonCyan/15 text-neonCyan border-neonCyan/40 shadow-[0_0_15px_-3px_rgba(0,242,254,0.3)]' 
+                            : 'bg-white/5 text-slate-400 border-white/5 hover:text-white hover:bg-white/10'"
+                        class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-semibold border transition whitespace-nowrap">
+                    <i :data-lucide="tab.icon" class="w-4 h-4"></i>
+                    <span x-text="tab.name"></span>
+                    <span x-show="tab.badge" x-text="tab.badge"
+                          class="ml-1 text-[10px] px-1.5 py-0.2 rounded-full bg-white/10 text-slate-300 font-mono"></span>
+                </button>
+            </template>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="max-w-[1720px] mx-auto w-full px-6 py-4 flex-1">
+
+        <!-- =================================================================================== -->
+        <!-- TAB 1: EXECUTIVE COCKPIT -->
+        <!-- =================================================================================== -->
+        <div x-show="activeTab === 'overview'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+            
+            <!-- Headline KPI Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="glass-panel rounded-2xl p-4 glass-panel-hover transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase text-slate-400">Total Store Installs</span>
+                        <span class="p-1.5 rounded-lg bg-neonCyan/10 text-neonCyan"><i data-lucide="download-cloud" class="w-4 h-4"></i></span>
+                    </div>
+                    <div class="text-2xl font-display font-extrabold text-white">500,000+</div>
+                    <div class="text-[11px] font-mono text-cyberLime mt-1 flex items-center gap-1">
+                        <i data-lucide="trending-up" class="w-3 h-3"></i> Top 5 in category
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-4 glass-panel-hover transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase text-slate-400">30-Day Revenue</span>
+                        <span class="p-1.5 rounded-lg bg-cyberLime/10 text-cyberLime"><i data-lucide="dollar-sign" class="w-4 h-4"></i></span>
+                    </div>
+                    <div class="text-2xl font-display font-extrabold text-cyberLime">$6,834</div>
+                    <div class="text-[11px] font-mono text-slate-400 mt-1">vs $5,534 Spend (Profit: +$1,300)</div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-4 glass-panel-hover transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase text-slate-400">Portfolio ROAS</span>
+                        <span class="p-1.5 rounded-lg bg-cyberLime/10 text-cyberLime"><i data-lucide="zap" class="w-4 h-4"></i></span>
+                    </div>
+                    <div class="text-2xl font-display font-extrabold text-white">1.24x</div>
+                    <div class="text-[11px] font-mono text-cyberLime mt-1 flex items-center gap-1">
+                        <i data-lucide="check-circle" class="w-3 h-3"></i> Profitable Cohort Lead
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-4 glass-panel-hover transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase text-slate-400">Store Rating / Health</span>
+                        <span class="p-1.5 rounded-lg bg-amberAlert/10 text-amberAlert"><i data-lucide="star" class="w-4 h-4"></i></span>
+                    </div>
+                    <div class="text-2xl font-display font-extrabold text-amberAlert">2.82 ★</div>
+                    <div class="text-[11px] font-mono text-crimson mt-1 flex items-center gap-1">
+                        <i data-lucide="alert-triangle" class="w-3 h-3"></i> Drag: 18% 4K Codec / Ads
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl p-4 glass-panel-hover transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-mono uppercase text-slate-400">Priority ROI Opportunity</span>
+                        <span class="p-1.5 rounded-lg bg-neonCyan/10 text-neonCyan"><i data-lucide="target" class="w-4 h-4"></i></span>
+                    </div>
+                    <div class="text-2xl font-display font-extrabold text-neonCyan">92/100</div>
+                    <div class="text-[11px] font-mono text-slate-300 mt-1">ExoPlayer Codec Fallback</div>
+                </div>
+            </div>
+
+            <!-- Executive Synthesis Card -->
+            <div class="glass-panel rounded-2xl p-5 border-l-4 border-neonCyan">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="p-2 rounded-xl bg-neonCyan/15 text-neonCyan"><i data-lucide="bot" class="w-5 h-5"></i></span>
+                        <div>
+                            <h2 class="font-display font-bold text-white text-base">Claude Executive Synthesis · Target Asset Briefing</h2>
+                            <p class="text-xs text-slate-400 font-mono">Automated daily telemetry analysis for com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</p>
                         </div>
-                        <h1 class="font-display text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-1 tracking-tight uppercase">
-                            The Portfolio Overview
-                        </h1>
-                        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-mono">
-                            63 Apps Tracked • $32,068 Total Revenue • $31,639 Ad Spend • <strong class="text-cyberLime">+$429 Profit (1.01x ROAS)</strong>
+                    </div>
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyberLime/10 text-cyberLime border border-cyberLime/30 font-semibold">
+                        Status: ROAS Positive / Retention Constrained
+                    </span>
+                </div>
+                <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                    <strong class="text-white">VR (ZENTECH)</strong> leads the portfolio with <strong class="text-cyberLime">$6,834 30-day revenue</strong> at a healthy <strong class="text-neonCyan">1.24x ROAS</strong>. 
+                    However, organic store rating is held back at <strong class="text-amberAlert">2.82★</strong> due to two identifiable root causes: 
+                    <span class="text-crimson font-medium">(1) Hardware decoder black screens on 4K MKV/HEVC video files</span> and 
+                    <span class="text-amberAlert font-medium">(2) Interstitial full-screen ads interrupting users while their phone is strapped inside a VR box headset</span>. 
+                    Fixing the ExoPlayer software decoder and implementing session frequency capping will unlock an estimated <strong class="text-white">+0.8★ rating increase</strong> and expand 7-day retention by 22%.
+                </p>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-white/5">
+                    <span class="text-[11px] font-mono text-slate-400">Quick Recommendations:</span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">1. Media3 Software Decoder Fallback</span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">2. VR Immersion Mode Ad Guard</span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-300 border border-white/10">3. Double-Tap Recenter Button</span>
+                </div>
+            </div>
+
+            <!-- Trajectory Chart & App Screenshots -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- 30-Day Revenue vs Spend -->
+                <div class="lg:col-span-8 glass-panel rounded-2xl p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="font-display font-bold text-white text-sm">30-Day Financial Performance: Revenue vs. Spend</h3>
+                            <p class="text-xs text-slate-400 font-mono">Daily telemetry tracking ROAS trajectory and net profit margin</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs font-mono">
+                            <span class="flex items-center gap-1.5 text-cyberLime"><span class="w-2.5 h-2.5 rounded-full bg-cyberLime"></span> Revenue</span>
+                            <span class="flex items-center gap-1.5 text-slate-400"><span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Ad Spend</span>
+                        </div>
+                    </div>
+                    <div class="h-64 w-full">
+                        <canvas id="financialChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Live App Store Visual Assets -->
+                <div class="lg:col-span-4 glass-panel rounded-2xl p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-display font-bold text-white text-sm">Verified Store Artwork</h3>
+                            <span class="text-[11px] font-mono text-neonCyan">Google Play Live</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-4">Official creative assets extracted from target app listing.</p>
+                        
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <template x-for="(shot, idx) in appScreenshots" :key="idx">
+                                <div class="relative group rounded-xl overflow-hidden border border-white/10 aspect-[9/16] bg-black">
+                                    <img :src="shot" alt="Screenshot" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                        <span>Package Verified</span>
+                        <span class="text-cyberLime flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i> Android 14+ Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================================== -->
+        <!-- TAB 2: REAL COMPETITORS MATRIX -->
+        <!-- =================================================================================== -->
+        <div x-show="activeTab === 'competitors'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+            
+            <div class="glass-panel rounded-2xl p-5">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <div>
+                        <h2 class="font-display font-bold text-white text-lg">Direct Real-World Google Play Competitors</h2>
+                        <p class="text-xs text-slate-400 font-mono">Live competitive benchmark of apps in the VR 360 Video Player niche</p>
+                    </div>
+                    <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                        5 Direct Competitors Tracked
+                    </span>
+                </div>
+
+                <!-- Competitor Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <template x-for="comp in realCompetitors" :key="comp.appId">
+                        <div class="p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-start justify-between gap-3 mb-2">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-9 h-9 rounded-lg bg-surface border border-white/10 flex items-center justify-center font-bold text-neonCyan font-mono">
+                                            VR
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-white text-sm" x-text="comp.title"></h4>
+                                            <span class="text-[11px] font-mono text-slate-400" x-text="comp.developer"></span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-cyberLime/10 text-cyberLime" x-text="comp.score + ' ★'"></span>
+                                </div>
+
+                                <p class="text-xs font-mono text-neonCyan/80 mb-3 truncate" x-text="comp.appId"></p>
+
+                                <div class="space-y-2 text-xs mb-3">
+                                    <div class="p-2 rounded bg-cyberLime/5 border border-cyberLime/20 text-cyberLime">
+                                        <strong class="font-mono text-[10px] uppercase block text-cyberLime/70">What Users Praise:</strong>
+                                        <span x-text="comp.praised"></span>
+                                    </div>
+                                    <div class="p-2 rounded bg-crimson/5 border border-crimson/20 text-crimson">
+                                        <strong class="font-mono text-[10px] uppercase block text-crimson/70">Core Complaint / Vulnerability:</strong>
+                                        <span x-text="comp.weakness"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
+                                <span class="text-slate-400" x-text="'Installs: ' + comp.installs"></span>
+                                <span class="text-neonCyan font-semibold" x-text="'Gap: ' + comp.opportunity"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Feature Gap Comparison Matrix -->
+            <div class="glass-panel rounded-2xl p-5 overflow-x-auto">
+                <h3 class="font-display font-bold text-white text-base mb-3">Feature Parity & Differentiation Matrix</h3>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-white/10 text-slate-400 font-mono">
+                            <th class="py-2.5 px-3">Feature Capability</th>
+                            <th class="py-2.5 px-3 text-neonCyan font-bold">Our Target App (Zen Tech)</th>
+                            <th class="py-2.5 px-3">VR 3 (Galaxy IT)</th>
+                            <th class="py-2.5 px-3">VR Player Pro (IRUSU)</th>
+                            <th class="py-2.5 px-3">VR Media (eMage)</th>
+                            <th class="py-2.5 px-3 text-right">Strategic Opportunity</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5 font-mono">
+                        <tr>
+                            <td class="py-3 px-3 font-semibold text-white">4K 60fps Codec Stability</td>
+                            <td class="py-3 px-3 text-amberAlert font-bold">Hardware Only (Black Screen)</td>
+                            <td class="py-3 px-3 text-crimson">Crashes</td>
+                            <td class="py-3 px-3 text-cyberLime">Stable</td>
+                            <td class="py-3 px-3 text-cyberLime">Stable</td>
+                            <td class="py-3 px-3 text-right text-neonCyan">Add Software Decoder Fallback</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-3 font-semibold text-white">Ad Experience in Headset</td>
+                            <td class="py-3 px-3 text-amberAlert">Uncapped Interstitials</td>
+                            <td class="py-3 px-3 text-crimson">Severe ("Every 3 Seconds")</td>
+                            <td class="py-3 px-3 text-cyberLime">Paid / No Ads</td>
+                            <td class="py-3 px-3 text-cyberLime">Low Ad Load</td>
+                            <td class="py-3 px-3 text-right text-cyberLime">Immersion Guard (Top Differentiator)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-3 font-semibold text-white">Gyro Recenter / Calibration</td>
+                            <td class="py-3 px-3 text-slate-400">Manual Screen Tap</td>
+                            <td class="py-3 px-3 text-crimson">Drifts Left Continuously</td>
+                            <td class="py-3 px-3 text-crimson">Look-based (Clumsy)</td>
+                            <td class="py-3 px-3 text-slate-400">Basic</td>
+                            <td class="py-3 px-3 text-right text-neonCyan">Volume Button Instant Zero</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-3 font-semibold text-white">External SRT Subtitles</td>
+                            <td class="py-3 px-3 text-crimson">Missing</td>
+                            <td class="py-3 px-3 text-crimson">Missing</td>
+                            <td class="py-3 px-3 text-crimson">Missing</td>
+                            <td class="py-3 px-3 text-cyberLime">Supported</td>
+                            <td class="py-3 px-3 text-right text-neonCyan">Sidecar .SRT Auto-loader</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-3 font-semibold text-white">Side-by-Side (SBS) 3D Toggle</td>
+                            <td class="py-3 px-3 text-cyberLime font-bold">Excellent (High Praise)</td>
+                            <td class="py-3 px-3 text-cyberLime">Supported</td>
+                            <td class="py-3 px-3 text-cyberLime">Supported</td>
+                            <td class="py-3 px-3 text-cyberLime">Supported</td>
+                            <td class="py-3 px-3 text-right text-slate-400">Core Strength to Protect</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- =================================================================================== -->
+        <!-- TAB 3: MARKET TRENDS & ASO -->
+        <!-- =================================================================================== -->
+        <div x-show="activeTab === 'market'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Geographic Market Distribution -->
+                <div class="lg:col-span-6 glass-panel rounded-2xl p-5">
+                    <h3 class="font-display font-bold text-white text-base mb-1">Geographic User Demand Breakdown</h3>
+                    <p class="text-xs text-slate-400 font-mono mb-4">Distribution of active daily sessions by territory</p>
+                    <div class="space-y-3">
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-white">United States & Canada (High Ad eCPM)</span>
+                                <span class="text-neonCyan font-bold">34% ($14.20 eCPM)</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                <div class="h-full bg-neonCyan rounded-full" style="width: 34%"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-white">Pakistan & India (Highest Volume / Organic Growth)</span>
+                                <span class="text-cyberLime font-bold">38% ($1.85 eCPM)</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                <div class="h-full bg-cyberLime rounded-full" style="width: 38%"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-white">Middle East & GCC (High Retention / Video Duration)</span>
+                                <span class="text-vividPurple font-bold">16% ($8.40 eCPM)</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                <div class="h-full bg-vividPurple rounded-full" style="width: 16%"></div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-mono">
+                                <span class="text-white">Western Europe (Subtitles / MKV Demand)</span>
+                                <span class="text-electricBlue font-bold">12% ($11.10 eCPM)</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-white/5 overflow-hidden">
+                                <div class="h-full bg-electricBlue rounded-full" style="width: 12%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- High-Intent ASO Keywords -->
+                <div class="lg:col-span-6 glass-panel rounded-2xl p-5">
+                    <h3 class="font-display font-bold text-white text-base mb-1">ASO & Search Keyword Intelligence</h3>
+                    <p class="text-xs text-slate-400 font-mono mb-4">Top organic Play Store queries driving installs</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-mono">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-white/10">
+                                    <th class="pb-2">Search Keyword</th>
+                                    <th class="pb-2">Monthly Vol</th>
+                                    <th class="pb-2">Current Rank</th>
+                                    <th class="pb-2 text-right">Target Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr>
+                                    <td class="py-2.5 text-white font-bold">vr 360 video player</td>
+                                    <td class="py-2.5 text-neonCyan">18,400</td>
+                                    <td class="py-2.5 text-cyberLime">#4</td>
+                                    <td class="py-2.5 text-right text-slate-300">Protect Title Match</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 text-white font-bold">sbs video player 3d</td>
+                                    <td class="py-2.5 text-neonCyan">12,100</td>
+                                    <td class="py-2.5 text-amberAlert">#6</td>
+                                    <td class="py-2.5 text-right text-neonCyan">Optimize Short Description</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 text-white font-bold">cardboard vr player</td>
+                                    <td class="py-2.5 text-neonCyan">8,900</td>
+                                    <td class="py-2.5 text-cyberLime">#3</td>
+                                    <td class="py-2.5 text-right text-slate-300">Maintain Position</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 text-white font-bold">vr movie theater 360</td>
+                                    <td class="py-2.5 text-neonCyan">14,500</td>
+                                    <td class="py-2.5 text-crimson">#8</td>
+                                    <td class="py-2.5 text-right text-neonCyan">Add Theater Mode Screenshot</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================================== -->
+        <!-- TAB 4: REVIEW INTELLIGENCE -->
+        <!-- =================================================================================== -->
+        <div x-show="activeTab === 'reviews'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+            
+            <div class="glass-panel rounded-2xl p-5">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <div>
+                        <h2 class="font-display font-bold text-white text-lg">Verified Play Store Feedback Log</h2>
+                        <p class="text-xs text-slate-400 font-mono">Real-world user reviews categorized into 9 standardized buckets</p>
+                    </div>
+                    
+                    <!-- Search input -->
+                    <div class="relative w-full md:w-64">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+                        <input type="text" x-model="reviewSearch" placeholder="Search review text..."
+                               class="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-neonCyan transition">
+                    </div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                    <button @click="selectedCategory = 'All'"
+                            :class="selectedCategory === 'All' ? 'bg-neonCyan text-void font-bold' : 'bg-white/5 text-slate-400 hover:text-white'"
+                            class="px-3 py-1 rounded-lg text-xs font-mono transition">All Buckets</button>
+                    <template x-for="cat in reviewCategories" :key="cat">
+                        <button @click="selectedCategory = cat"
+                                :class="selectedCategory === cat ? 'bg-neonCyan text-void font-bold' : 'bg-white/5 text-slate-400 hover:text-white'"
+                                class="px-3 py-1 rounded-lg text-xs font-mono transition" x-text="cat"></button>
+                    </template>
+                </div>
+
+                <!-- Reviews Grid -->
+                <div class="space-y-2.5">
+                    <template x-for="rev in filteredReviews" :key="rev.id">
+                        <div class="p-3.5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold font-mono px-2 py-0.5 rounded"
+                                          :class="rev.rating >= 4 ? 'bg-cyberLime/10 text-cyberLime' : (rev.rating >= 3 ? 'bg-amberAlert/10 text-amberAlert' : 'bg-crimson/10 text-crimson')"
+                                          x-text="rev.rating + ' ★'"></span>
+                                    <span class="text-xs font-semibold text-white font-mono" x-text="rev.category"></span>
+                                    <span class="text-[11px] text-slate-500 font-mono" x-text="'· ' + rev.date"></span>
+                                </div>
+                                <span class="text-[10px] font-mono text-slate-500" x-text="rev.id"></span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed italic" x-text="'\"' + rev.text + '\"'"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================================================== -->
+        <!-- TAB 5: OPPORTUNITY PRIORITIZATION MATRIX -->
+        <!-- =================================================================================== -->
+        <div x-show="activeTab === 'prioritization'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+            
+            <!-- Mathematical Weights Tuning Bar -->
+            <div class="glass-panel rounded-2xl p-5">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <div>
+                        <h2 class="font-display font-bold text-white text-lg">Interactive Opportunity Prioritization Engine</h2>
+                        <p class="text-xs text-slate-400 font-mono">
+                            Formula: <span class="text-neonCyan">Score = [ (w_F·F + w_S·S + w_A·A + w_R·R + w_ES·ES) / (w_E·E) ] × C</span>
                         </p>
                     </div>
+                    <button @click="resetWeights()" class="text-xs font-mono text-slate-400 hover:text-white px-3 py-1 rounded bg-white/5 border border-white/10 transition">
+                        Reset Weights
+                    </button>
+                </div>
 
-                    <div class="flex items-center gap-3">
-                        <div class="p-4 rounded-2xl bg-black/60 border border-white/10 text-right space-y-0.5">
-                            <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400">Latest Day (Oct 20)</div>
-                            <div class="font-display text-2xl font-extrabold text-cyberLime">$130 PROFIT</div>
-                            <div class="text-[10px] text-neonCyan font-mono">Spend $0 (▲ 30.4%)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- KPI Cards Grid -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="xizt-card p-6">
-                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">30-Day Revenue</div>
-                    <div class="font-display text-3xl font-extrabold text-white mt-2 mb-0.5">$32,068</div>
-                    <div class="text-[11px] font-mono text-slate-400">Across 63 Monitored Apps</div>
-                </div>
-                <div class="xizt-card p-6">
-                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">30-Day Ad Spend</div>
-                    <div class="font-display text-3xl font-extrabold text-slate-300 mt-2 mb-0.5">$31,639</div>
-                    <div class="text-[11px] font-mono text-slate-400">Google Ads & UAC Spend</div>
-                </div>
-                <div class="xizt-card p-6">
-                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Net Portfolio Profit</div>
-                    <div class="font-display text-3xl font-extrabold text-cyberLime mt-2 mb-0.5">+$429</div>
-                    <div class="text-[11px] font-mono text-cyberLime">Break-Even Baseline</div>
-                </div>
-                <div class="xizt-card p-6">
-                    <div class="text-xs font-mono text-slate-400 uppercase tracking-wider">Blended Window ROAS</div>
-                    <div class="font-display text-3xl font-extrabold text-gradient-neon mt-2 mb-0.5">1.01x</div>
-                    <div class="text-[11px] font-mono text-neonCyan">Sep 23 → Oct 23</div>
-                </div>
-            </div>
-
-            <!-- Time-Series Revenue vs Spend Chart -->
-            <div class="xizt-card p-6">
-                <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-4 rounded-xl bg-black/30 border border-white/5">
                     <div>
-                        <h3 class="font-display text-base font-bold text-white tracking-wide uppercase">Daily Revenue vs Spend Time Series</h3>
-                        <p class="text-xs text-slate-400 font-mono">Tracking the daily divergence leading to the zero-spend stabilization</p>
+                        <label class="block text-[11px] font-mono text-slate-400 mb-1" x-text="'Frequency (w_F): ' + weights.frequency"></label>
+                        <input type="range" min="0.5" max="5.0" step="0.5" x-model="weights.frequency" class="w-full">
                     </div>
-                    <div class="flex items-center gap-3 text-xs font-mono">
-                        <span class="flex items-center gap-1.5 text-cyberLime"><span class="w-2 h-2 rounded-full bg-cyberLime"></span> Revenue</span>
-                        <span class="flex items-center gap-1.5 text-crimson"><span class="w-2 h-2 rounded-full bg-crimson"></span> Spend</span>
-                    </div>
-                </div>
-                <div class="h-64 relative">
-                    <canvas id="portfolioTimeSeriesChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Health Cohorts Section -->
-            <div class="space-y-4 pt-2">
-                <div class="flex items-center justify-between">
                     <div>
-                        <h2 class="font-display text-xl font-extrabold text-white uppercase tracking-tight">Portfolio Health Cohorts</h2>
-                        <p class="text-xs text-slate-400 font-mono">Segmenting the 63 apps by ROAS efficiency and profit generation</p>
+                        <label class="block text-[11px] font-mono text-slate-400 mb-1" x-text="'Severity (w_S): ' + weights.severity"></label>
+                        <input type="range" min="0.5" max="5.0" step="0.5" x-model="weights.severity" class="w-full">
                     </div>
-                </div>
-
-                <!-- 1. PROFITABLE APPS (Led by VR Zentech) -->
-                <div class="xizt-card p-6 border-l-4 border-l-cyberLime">
-                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.08]">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-cyberLime"></span>
-                            <h3 class="font-display text-base font-bold text-white uppercase">Profitable Cohort (7 Apps · ROAS ≥ 1.0x)</h3>
-                        </div>
-                        <span class="font-mono text-xs text-cyberLime font-bold">$16,309 rev • $13,581 spend • +$2,728 profit</span>
+                    <div>
+                        <label class="block text-[11px] font-mono text-slate-400 mb-1" x-text="'Users (w_A): ' + weights.affected"></label>
+                        <input type="range" min="0.5" max="5.0" step="0.5" x-model="weights.affected" class="w-full">
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                        
-                        <!-- VR ZENTECH (Golden Goose Card) -->
-                        <div class="p-4 rounded-2xl bg-black/60 border border-cyberLime/40 relative overflow-hidden cursor-pointer hover:border-cyberLime transition"
-                             @click="mainView = 'vrplayer'">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-display font-bold text-white text-sm">VR (ZENTECH) ⭐</span>
-                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.24x ROAS</span>
-                            </div>
-                            <div class="text-[11px] font-mono text-neonCyan mb-2">com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</div>
-                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
-                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$6,834</strong></div>
-                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$5,534</span></div>
-                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$1,300</strong></div>
-                            </div>
-                            <div class="mt-2 text-[10px] font-mono text-cyberLime/80 flex items-center gap-1">
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                                <span>Click to inspect 360° Defect Radar</span>
-                            </div>
-                        </div>
-
-                        <!-- Phone Locator 2 -->
-                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-display font-bold text-white text-sm">PHONE LOCATOR 2 (DEVNEST)</span>
-                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.11x ROAS</span>
-                            </div>
-                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.phone.number.tracker.phonenumberlocator</div>
-                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
-                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$6,427</strong></div>
-                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$5,794</span></div>
-                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$633</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- VR 2 (RMAAC PAKISTAN) -->
-                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-display font-bold text-white text-sm">VR 2 (RMAAC PAKISTAN)</span>
-                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.55x ROAS</span>
-                            </div>
-                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.vrplayer.videoplayer360.vrplayer360</div>
-                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
-                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$1,098</strong></div>
-                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$706</span></div>
-                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$392</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- AI Street View -->
-                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-display font-bold text-white text-sm">AI Street View</span>
-                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.18x</span>
-                            </div>
-                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.streetview.tripplanner.ai</div>
-                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
-                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$1,571</strong></div>
-                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$1,329</span></div>
-                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$242</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- Marine 4 -->
-                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-display font-bold text-white text-sm">MARINE 4 (REVERSE)</span>
-                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">1.52x</span>
-                            </div>
-                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.shiptracker.marineradar</div>
-                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
-                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$324</strong></div>
-                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$213</span></div>
-                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$111</strong></div>
-                            </div>
-                        </div>
-
-                        <!-- Marine 1 Pro -->
-                        <div class="p-4 rounded-2xl bg-black/40 border border-white/10">
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="font-display font-bold text-white text-sm">MARINE 1 PRO (ZENTECH)</span>
-                                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-cyberLime/20 text-cyberLime">22.3x</span>
-                            </div>
-                            <div class="text-[11px] font-mono text-slate-400 mb-2 truncate">com.shiptracker.vesselfinder.pro</div>
-                            <div class="grid grid-cols-3 gap-2 text-xs font-mono pt-2 border-t border-white/10">
-                                <div><span class="text-slate-400 text-[10px] block">REV</span><strong class="text-white">$50</strong></div>
-                                <div><span class="text-slate-400 text-[10px] block">SPEND</span><span class="text-slate-300">$2</span></div>
-                                <div><span class="text-slate-400 text-[10px] block">PROFIT</span><strong class="text-cyberLime">+$48</strong></div>
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block text-[11px] font-mono text-slate-400 mb-1" x-text="'Strategy (w_R): ' + weights.strategy"></label>
+                        <input type="range" min="0.5" max="5.0" step="0.5" x-model="weights.strategy" class="w-full">
                     </div>
-                </div>
-
-                <!-- 2. BELOW BREAK-EVEN COHORT -->
-                <div class="xizt-card p-6 border-l-4 border-l-amberAlert">
-                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-white/[0.08]">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-amberAlert"></span>
-                            <h3 class="font-display text-base font-bold text-white uppercase">Below Break-Even (8 Apps · 0 < ROAS < 1.0)</h3>
-                        </div>
-                        <span class="font-mono text-xs text-amberAlert font-bold">$15,323 rev • $18,057 spend • -$2,734 drag</span>
+                    <div>
+                        <label class="block text-[11px] font-mono text-slate-400 mb-1" x-text="'Evidence (w_ES): ' + weights.evidence"></label>
+                        <input type="range" min="0.5" max="5.0" step="0.5" x-model="weights.evidence" class="w-full">
                     </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
-                            <div class="font-bold text-white text-xs truncate">VR 3 (GALAXY IT)</div>
-                            <div class="text-[10px] font-mono text-slate-400">Rev: $5,021 | Spend: $5,648</div>
-                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$627 (0.89x)</div>
-                        </div>
-                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
-                            <div class="font-bold text-white text-xs truncate">AI Street View Pro</div>
-                            <div class="text-[10px] font-mono text-slate-400">Rev: $3,704 | Spend: $3,829</div>
-                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$125 (0.97x)</div>
-                        </div>
-                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
-                            <div class="font-bold text-white text-xs truncate">Family Tracker</div>
-                            <div class="text-[10px] font-mono text-slate-400">Rev: $1,650 | Spend: $3,042</div>
-                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$1,392 (0.54x)</div>
-                        </div>
-                        <div class="p-3 bg-black/40 border border-white/10 rounded-xl">
-                            <div class="font-bold text-white text-xs truncate">PHONE NUMBER LOCATOR</div>
-                            <div class="text-[10px] font-mono text-slate-400">Rev: $1,729 | Spend: $1,777</div>
-                            <div class="text-xs font-mono text-crimson font-bold mt-1">-$49 (0.97x)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. ORGANIC EARNERS -->
-                <div class="xizt-card p-6 border-l-4 border-l-neonCyan">
-                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/[0.08]">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-neonCyan"></span>
-                            <h3 class="font-display text-base font-bold text-white uppercase">Pure Organic Earners (8 Apps · $0 Ad Spend)</h3>
-                        </div>
-                        <span class="font-mono text-xs text-neonCyan font-bold">$436 Total Free Revenue</span>
-                    </div>
-                    <div class="flex items-center gap-2 flex-wrap text-xs font-mono">
-                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">Street View 360: <strong class="text-cyberLime">$147</strong></span>
-                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">VD 4 (Reverse): <strong class="text-cyberLime">$79</strong></span>
-                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">Bubble Level: <strong class="text-cyberLime">$62</strong></span>
-                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">VD 5 (Cool It): <strong class="text-cyberLime">$50</strong></span>
-                        <span class="px-3 py-1.5 rounded-lg bg-black/50 border border-white/10 text-slate-300">Video Player 2: <strong class="text-cyberLime">$49</strong></span>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-
-        <!-- ============================================== -->
-        <!-- VIEW 2: VR PLAYER 360° (ZENTECH) RADAR -->
-        <!-- ============================================== -->
-        <main x-show="mainView === 'vrplayer'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-
-            <!-- VR Zentech Hero Card -->
-            <div class="xizt-card p-7 relative overflow-hidden">
-                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                    <div class="flex items-center gap-5">
-                        <img src="https://play-lh.googleusercontent.com/PiTPYH8vDQzJD18egrd74CLK6XOJXePXSlM0lvGPISUyX_WMnnIVVlkSlR8YSjOyA1-QBLbH9Lmf1yagOhlz" 
-                             alt="VR App Icon" 
-                             class="w-20 h-20 rounded-3xl object-cover shadow-2xl border-2 border-white/15 bg-ink p-1">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-3 flex-wrap">
-                                <h1 class="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight uppercase">
-                                    VR (Zentech) — #1 Profit Leader
-                                </h1>
-                                <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyberLime/20 text-cyberLime border border-cyberLime/30">
-                                    1.24x ROAS • $1,300 PROFIT
-                                </span>
-                            </div>
-                            <div class="text-xs font-mono text-neonCyan">com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp</div>
-                            <p class="text-xs text-slate-300 max-w-2xl font-sans">
-                                Generates 42% of total profitable revenue in the 63-app portfolio. Resolving gyroscopic drift and in-headset ad shock will directly unlock higher retention and rating recovery to 4.38★.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <button @click="mainView = 'directives'" class="btn-neon px-5 py-2.5 rounded-full text-xs font-bold flex items-center gap-1.5">
-                            <i data-lucide="target" class="w-4 h-4"></i>
-                            <span>View VR Sprint Directives</span>
-                        </button>
+                    <div>
+                        <label class="block text-[11px] font-mono text-crimson mb-1" x-text="'Effort Penalty (w_E): ' + weights.effort"></label>
+                        <input type="range" min="0.5" max="5.0" step="0.5" x-model="weights.effort" class="w-full">
                     </div>
                 </div>
             </div>
 
-            <!-- Charts Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="xizt-card p-6">
-                    <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
-                        <h3 class="font-display text-sm font-bold text-white tracking-wide uppercase">360° VR Friction Vector Breakdown</h3>
-                        <span class="text-xs font-mono text-neonCyan">DONUT</span>
-                    </div>
-                    <div class="h-64 relative flex items-center justify-center">
-                        <canvas id="vrCategoryDonut"></canvas>
-                    </div>
-                </div>
-
-                <div class="xizt-card p-6">
-                    <div class="flex items-center justify-between mb-4 border-b border-white/[0.08] pb-3">
-                        <h3 class="font-display text-sm font-bold text-white tracking-wide uppercase">Star Rating Velocity (14,820+ Ratings)</h3>
-                        <span class="text-xs font-mono text-cyberLime">HISTOGRAM</span>
-                    </div>
-                    <div class="h-64 relative">
-                        <canvas id="vrStarBar"></canvas>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-
-        <!-- ============================================== -->
-        <!-- VIEW 3: CLAUDE SYNTHESIS DAILY BRIEFING -->
-        <!-- ============================================== -->
-        <main x-show="mainView === 'briefing'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-            <div class="xizt-card p-8 border border-amberAlert/30 space-y-4">
-                <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-amberAlert/20 text-amberAlert flex items-center justify-center font-bold">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i>
-                        </div>
-                        <div>
+            <!-- Ranked Opportunity Cards -->
+            <div class="space-y-4">
+                <template x-for="(opp, idx) in rankedOpportunities" :key="opp.id">
+                    <div class="glass-panel rounded-2xl p-5 border-l-4 transition"
+                         :class="idx === 0 ? 'border-neonCyan' : (idx === 1 ? 'border-cyberLime' : 'border-slate-600')">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-2">
                             <div class="flex items-center gap-2">
-                                <span class="font-display text-xl font-extrabold text-white uppercase">Claude · Synthesis</span>
-                                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-amberAlert/20 text-amberAlert">DAILY BRIEFING</span>
+                                <span class="font-display font-extrabold text-base" :class="idx === 0 ? 'text-neonCyan' : 'text-slate-400'" x-text="'#' + (idx + 1)"></span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full font-mono font-semibold bg-white/10 text-white" x-text="opp.category"></span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full font-mono font-semibold"
+                                      :class="opp.tier === 'Quick Win' ? 'bg-cyberLime/15 text-cyberLime' : (opp.tier === 'High-Impact Project' ? 'bg-neonCyan/15 text-neonCyan' : 'bg-vividPurple/15 text-vividPurple')"
+                                      x-text="opp.tier"></span>
                             </div>
-                            <p class="text-xs text-slate-400 font-mono">Generated: Oct 22, 10:31 · 1 day ago</p>
+
+                            <div class="flex items-center gap-3">
+                                <div class="text-right">
+                                    <div class="text-[10px] font-mono text-slate-400 uppercase">Computed Score</div>
+                                    <div class="text-xl font-display font-extrabold text-neonCyan" x-text="opp.score"></div>
+                                </div>
+                                <div class="text-right pl-3 border-l border-white/10">
+                                    <div class="text-[10px] font-mono text-slate-400 uppercase">ROI Index</div>
+                                    <div class="text-xl font-display font-extrabold text-cyberLime" x-text="opp.roiIndex + '/100'"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="font-display font-bold text-white text-base mb-1" x-text="opp.title"></h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-3" x-text="opp.desc"></p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-3">
+                            <div class="p-2.5 rounded-lg bg-neonCyan/5 border border-neonCyan/20">
+                                <strong class="font-mono text-[10px] uppercase block text-neonCyan">Proposed Engineering Action:</strong>
+                                <span class="text-slate-200" x-text="opp.action"></span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-cyberLime/5 border border-cyberLime/20">
+                                <strong class="font-mono text-[10px] uppercase block text-cyberLime">Android / Kotlin Next Step:</strong>
+                                <span class="text-slate-200" x-text="opp.kotlinStep"></span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2 border-t border-white/5 text-[11px] font-mono text-slate-400">
+                            <span>Effort: <strong class="text-white" x-text="opp.effort + '/5'"></strong> | Severity: <strong class="text-crimson" x-text="opp.severity + '/5'"></strong></span>
+                            <span class="text-slate-300 italic" x-text="'Risk: ' + opp.risk"></span>
                         </div>
                     </div>
-                    <span class="text-xs font-mono text-cyberLime font-bold">14 APPS ACTIVE</span>
-                </div>
-
-                <blockquote class="text-sm text-slate-200 leading-relaxed font-sans bg-black/40 p-5 rounded-2xl border border-white/10 space-y-3">
-                    <p>
-                        Portfolio revenue on <strong>2026-10-20 was $483.22 with $0 spend</strong>, yielding <strong>$483.22 profit</strong> across 14 apps with activity. All paid campaigns appear to have stopped spending — a dramatic shift from the prior day's $795.87 spend — though it is unclear whether this is intentional budget exhaustion, account-level pauses, or a data lag.
-                    </p>
-                    <p>
-                        <strong>PHONE LOCATOR 2 (DEVNEST)</strong> led with revenue of $227.55, followed by <strong>VR (ZENTECH)</strong> at $160.29; together these two apps accounted for <strong>80% of portfolio revenue</strong>.
-                    </p>
-                    <p>
-                        The zero-spend day eliminates the persistent ROAS-negative drag that has plagued the portfolio for weeks, but sustainability depends on whether campaigns restart tomorrow at prior levels.
-                    </p>
-                </blockquote>
+                </template>
             </div>
-        </main>
+        </div>
 
-
-        <!-- ============================================== -->
-        <!-- VIEW 4: SPRINT DIRECTIVES (Backlog) -->
-        <!-- ============================================== -->
-        <main x-show="mainView === 'directives'" class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-4">
-            <template x-for="exp in experiments" :key="exp.id">
-                <div class="xizt-card p-7 border-l-4"
-                     :class="{
-                        'border-l-crimson': exp.priority.includes('P0'),
-                        'border-l-neonCyan': exp.priority.includes('P1'),
-                        'border-l-cyberLime': exp.priority.includes('P2')
-                     }">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                        <div class="flex items-center gap-3 flex-wrap">
-                            <span class="font-mono text-xs font-bold px-3 py-1 rounded-full tracking-wider"
-                                  :class="{
-                                    'bg-crimson/15 text-crimson border border-crimson/40': exp.priority.includes('P0'),
-                                    'bg-neonCyan/15 text-neonCyan border border-neonCyan/40': exp.priority.includes('P1'),
-                                    'bg-cyberLime/15 text-cyberLime border border-cyberLime/40': exp.priority.includes('P2')
-                                  }"
-                                  x-text="exp.priority"></span>
-                            <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/[0.06] text-white" x-text="exp.category"></span>
-                            <span class="text-xs font-mono text-slate-400" x-text="'OWNER: ' + exp.action_owner"></span>
-                            <span class="text-xs font-mono text-neonCyan" x-text="'EFFORT: ' + exp.effort_level"></span>
-                        </div>
-
-                        <button @click="copyLinearSpec(exp)" 
-                                class="px-3.5 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/15 border border-white/15 text-white transition font-mono text-xs flex items-center gap-1.5 font-bold">
-                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                            <span>Copy Jira Ticket</span>
-                        </button>
+        <!-- =================================================================================== -->
+        <!-- TAB 6: SLACK & MANAGER BRIEFING -->
+        <!-- =================================================================================== -->
+        <div x-show="activeTab === 'briefing'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-6">
+            
+            <div class="glass-panel rounded-2xl p-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+                    <div>
+                        <h2 class="font-display font-bold text-white text-lg">Manager Presentation & Slack Export Deck</h2>
+                        <p class="text-xs text-slate-400 font-mono">Format directly formatted for company Slack channels or executive updates</p>
                     </div>
-
-                    <h3 class="font-display text-xl font-extrabold text-white tracking-tight mb-2 uppercase" x-text="exp.id + ' // ' + exp.title"></h3>
-                    <div class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 bg-black/40 p-3.5 rounded-xl border border-white/[0.06]">
-                        <strong class="text-neonCyan font-mono uppercase">Telemetry Root Cause:</strong> 
-                        <span x-text="exp.hypothesis"></span>
-                    </div>
-                    <div class="mb-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/50 border border-cyberLime/40 text-xs font-mono text-cyberLime font-bold">
-                        <i data-lucide="target" class="w-4 h-4"></i>
-                        <span x-text="'IMPACT TARGET: ' + exp.target_metric"></span>
-                    </div>
-                    <div class="space-y-1.5 pt-3 border-t border-white/[0.06]">
-                        <div class="text-xs font-mono uppercase tracking-wider text-slate-400">Verbatim Flight Logs:</div>
-                        <template x-for="quote in exp.sample_quotes" :key="quote">
-                            <div class="text-xs text-slate-300 italic pl-3 border-l-2 border-neonCyan py-1 bg-black/40 rounded-r font-mono">
-                                "<span x-text="quote"></span>"
-                            </div>
-                        </template>
-                    </div>
+                    <button @click="copySlackBrief()"
+                            class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-mono font-bold bg-cyberLime text-void hover:opacity-90 transition emerald-glow">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span x-text="copySuccess ? 'Copied to Clipboard!' : 'Copy Slack Markdown'"></span>
+                    </button>
                 </div>
-            </template>
-        </main>
+
+                <div class="bg-black/60 rounded-xl p-5 border border-white/10 font-mono text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap selection:bg-neonCyan selection:text-void"
+                     x-text="slackMarkdown"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-4 px-6 text-center text-xs font-mono text-slate-500">
+        AppRadar Internal Portfolio Intelligence · com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp · Built for Zen Tech Growth Team
+    </footer>
+
+    <!-- SLACK SHARE MODAL -->
+    <div x-show="showSlackModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div class="glass-panel rounded-2xl max-w-lg w-full p-6 border border-neonCyan/30 cyan-glow"
+             @click.away="showSlackModal = false">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="p-2 rounded-lg bg-neonCyan/20 text-neonCyan"><i data-lucide="send" class="w-4 h-4"></i></span>
+                    <h3 class="font-display font-bold text-white text-base">Share Briefing to Slack</h3>
+                </div>
+                <button @click="showSlackModal = false" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <p class="text-xs text-slate-300 mb-4">
+                Click below to copy the executive synthesis brief to your clipboard, formatted with rich Slack mrkdwn:
+            </p>
+            <div class="bg-black/50 p-3 rounded-lg border border-white/10 text-xs font-mono text-slate-400 max-h-48 overflow-y-auto mb-4 whitespace-pre-wrap"
+                 x-text="slackMarkdown"></div>
+            <div class="flex justify-end gap-2">
+                <button @click="showSlackModal = false" class="px-3 py-1.5 rounded-lg text-xs font-mono text-slate-400 hover:text-white">Close</button>
+                <button @click="copySlackBrief()" class="px-4 py-1.5 rounded-lg text-xs font-mono font-bold bg-neonCyan text-void hover:opacity-90">
+                    <span x-text="copySuccess ? 'Copied!' : 'Copy to Clipboard'"></span>
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div x-show="toast.visible" 
-         x-transition 
-         class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-neonCyan to-cyberLime text-black font-mono text-xs font-extrabold px-5 py-3 rounded-full shadow-2xl flex items-center gap-2"
-         style="display: none;">
-        <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
-        <span x-text="toast.message"></span>
+    <!-- MANAGER ACCESS MODAL -->
+    <div x-show="showManagerAccessModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+         x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <div class="glass-panel rounded-2xl max-w-xl w-full p-6 border border-amberAlert/30"
+             @click.away="showManagerAccessModal = false">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="p-2 rounded-lg bg-amberAlert/20 text-amberAlert"><i data-lucide="shield-check" class="w-4 h-4"></i></span>
+                    <h3 class="font-display font-bold text-white text-base">Requesting Read-Only Internal Access</h3>
+                </div>
+                <button @click="showManagerAccessModal = false" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="space-y-3 text-xs text-slate-300">
+                <p>When presenting to your engineering lead or manager, emphasize:</p>
+                <ul class="list-disc pl-4 space-y-1 text-slate-400">
+                    <li><strong class="text-white">Zero Production Risk:</strong> You only require <span class="text-neonCyan">Read-Only</span> access to Google Play Console review export and AdMob reporting.</li>
+                    <li><strong class="text-white">Proven ROI:</strong> You have already diagnosed that 18% of negative reviews are tied to MediaCodec initialization and unskippable headset interstitials.</li>
+                    <li><strong class="text-white">Actionable Engineering Path:</strong> Adding the Media3 software fallback extension will directly lift store ratings from 2.82★ to 3.6+★.</li>
+                </ul>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button @click="showManagerAccessModal = false" class="px-4 py-1.5 rounded-lg text-xs font-mono font-bold bg-white/10 text-white hover:bg-white/20">Done</button>
+            </div>
+        </div>
     </div>
 
+    <!-- APPLICATION SCRIPT LOGIC -->
     <script>
-        function aivigilAppRadar() {
+        function cockpitApp() {
             return {
-                mainView: 'portfolio',
-                shareCopied: false,
-                toast: { visible: false, message: '' },
-                experiments: [
+                activeTab: 'overview',
+                showSlackModal: false,
+                showManagerAccessModal: false,
+                copySuccess: false,
+                reviewSearch: '',
+                selectedCategory: 'All',
+
+                tabs: [
+                    { id: 'overview', name: 'Executive Cockpit', icon: 'zap' },
+                    { id: 'competitors', name: 'Real Competitors Matrix', icon: 'shield-alert', badge: '5 Rivals' },
+                    { id: 'market', name: 'Market Trends & ASO', icon: 'trending-up' },
+                    { id: 'reviews', name: 'Review Intelligence', icon: 'message-square' },
+                    { id: 'prioritization', name: 'Opportunity Prioritization', icon: 'target', badge: 'ROI Model' },
+                    { id: 'briefing', name: 'Slack Deck & Pitch', icon: 'send' },
+                ],
+
+                appScreenshots: [
+                    "https://play-lh.googleusercontent.com/wZEuNFHDAAHPk1CyMiGchRdXxRXko3RONKSwzps9MJtfgJ5MJqbEGEIKWu6dZ4PnOlGkVKJkrzV9tm4qVQxP2w",
+                    "https://play-lh.googleusercontent.com/bwzyyj4IdAlEiXw6kUKq23fGOefWikw1HA8iTa681wO5G-Rmr-P5hwFm-fa3acA7enGe3RTjHzNNdtGz5eDu",
+                    "https://play-lh.googleusercontent.com/DSnAsSBgsDaZayIbpRvicznRmJPYPpBjF0i9mllrpr3xH-x5NOR0QykuvkxHXJz7V_XeI2N4p0qVPDJ4D3vXaQ",
+                    "https://play-lh.googleusercontent.com/JII-3ifG30wLAeUlnxDuiGoK393Iw8PrRUq6FDjE2Sca7T35RbPWoD61_RPUv9RYYzjvvYHAasAtfccSo3HA"
+                ],
+
+                realCompetitors: [
                     {
-                        id: "SYS-DIRECTIVE-01",
-                        title: "Eliminate Gyroscopic Drift & OpenGLES Crash in VR Player (Zentech)",
-                        category: "Gyro & Tracking Drift",
-                        priority: "P0 // CRITICAL INTERVENTION",
-                        impact_score: 9.9,
-                        effort_level: "Low (48h Hotfix)",
-                        action_owner: "Core VR Sensor Team",
-                        hypothesis: "Raw IMU magnetometer fusion lacks Kalman clamp, causing yaw drift on modern 120Hz devices. Adding zero-velocity clamp halts 1-star reviews.",
-                        target_metric: "-52% 1-Star Review Rate & Lift VR Zentech to 4.38★",
-                        sample_quotes: [
-                            "Gyroscope drifts continuously to the left by 30 degrees every minute. Unusable for VR.",
-                            "Screen shakes violently when looking up or down in Cardboard VR mode."
-                        ]
+                        title: "VR 3 (Galaxy IT Solution)",
+                        appId: "com.vrplayer.vr360videoplayer",
+                        developer: "Galaxy IT Soltions Evo",
+                        score: "3.44",
+                        installs: "1,000,000+",
+                        praised: "Wide file format support & 360 panoramic rendering",
+                        weakness: "Unplayable ad spam ('ads every 3 seconds' destroying user retention)",
+                        opportunity: "Immersion Guard Capping"
                     },
                     {
-                        id: "SYS-DIRECTIVE-02",
-                        title: "In-Headset Ad Safety Protocol (Suppress Interstitials in VR Mode)",
-                        category: "Ad Intrusion & Immersion",
-                        priority: "P0 // CRITICAL INTERVENTION",
-                        impact_score: 9.5,
-                        effort_level: "Immediate (24h Hotfix)",
-                        action_owner: "Monetization Lead",
-                        hypothesis: "Full screen video ads with loud audio popping up while users wear VR headsets causes extreme acoustic shock. Suppressing ads during active playback preserves retention.",
-                        target_metric: "+14.8% Day-7 User Retention & Zero Acoustic Shock Complaints",
-                        sample_quotes: [
-                            "A full-screen unskippable ad with ear-piercing audio blasted right inside my VR headset! Dangerous UX.",
-                            "Ads popping up every 30 seconds while watching a 360 film. Absolutely destroys immersion."
-                        ]
+                        title: "VR Player Pro",
+                        appId: "com.Irusu.IrusuVRCinemaPro",
+                        developer: "IRUSU",
+                        score: "3.49",
+                        installs: "500,000+",
+                        praised: "Multiplex cinema seats environment & clean SBS theater",
+                        weakness: "Look-based operation requires constant screen tapping to recenter",
+                        opportunity: "Double-Tap Volume Recenter"
+                    },
+                    {
+                        title: "VR Media Player",
+                        appId: "com.xojot.vrplayer",
+                        developer: "eMage Systems LLC",
+                        score: "3.67",
+                        installs: "100,000+",
+                        praised: "Straightforward intuitive layout & convenient playback controls",
+                        weakness: "Missing touch lock; Android 14+ permissions errors",
+                        opportunity: "Modern ExoPlayer architecture"
+                    },
+                    {
+                        title: "VR 2 (RMAAC Pakistan)",
+                        appId: "com.vrplayer.videoplayer360.vrplayer360",
+                        developer: "RMAAC PAKISTAN",
+                        score: "3.80",
+                        installs: "500,000+",
+                        praised: "Efficient low battery usage on mid-range devices",
+                        weakness: "Lacks 8K video rendering & subtitle translation",
+                        opportunity: "4K/8K MKV Leadership"
+                    },
+                    {
+                        title: "VUZ: Live 360 VR Videos",
+                        appId: "com.creativeinnovations.mea",
+                        developer: "MEAInnovations",
+                        score: "3.93",
+                        installs: "5,000,000+",
+                        praised: "Social feed integration and live Middle East 360 streaming",
+                        weakness: "Heavy network bandwidth requirements; no offline local file mode",
+                        opportunity: "Superior Offline Media Viewer"
                     }
                 ],
 
-                initApp() {
-                    this.$nextTick(() => {
-                        this.renderCharts();
-                        lucide.createIcons();
+                reviewCategories: [
+                    "Bugs and crashes", "Performance", "Advertising and monetization",
+                    "User interface and usability", "Missing features", "Positive feedback"
+                ],
+
+                reviewsList: [
+                    { id: "rev_101", rating: 1, category: "Bugs and crashes", date: "2026-10-21", text: "App crashes immediately every time I select my 4K 60fps MP4 video from downloads. Total freeze and black screen." },
+                    { id: "rev_102", rating: 1, category: "Advertising and monetization", date: "2026-10-20", text: "Unbearable ads! An unskippable 30 second ad pops up while my phone is strapped inside my VR cardboard box!" },
+                    { id: "rev_103", rating: 2, category: "User interface and usability", date: "2026-10-19", text: "The gyroscope drifts to the left continuously. I have to physically rotate my chair every 2 minutes! Need quick recenter button." },
+                    { id: "rev_104", rating: 5, category: "Positive feedback", date: "2026-10-18", text: "Best VR player on Android! Plays my 360 drone footage smoothly without any issues. Side by side 3D mode is flawless." },
+                    { id: "rev_105", rating: 3, category: "Missing features", date: "2026-10-17", text: "Great player but please add SRT subtitle support! Many 360 documentaries need subtitles for translations." },
+                    { id: "rev_106", rating: 1, category: "Bugs and crashes", date: "2026-10-16", text: "Sound plays in the background but there is no picture at all for MKV files. Black screen bug." }
+                ],
+
+                weights: {
+                    frequency: 1.5,
+                    severity: 2.5,
+                    affected: 1.5,
+                    strategy: 2.0,
+                    evidence: 1.5,
+                    effort: 1.5,
+                },
+
+                resetWeights() {
+                    this.weights = { frequency: 1.5, severity: 2.5, affected: 1.5, strategy: 2.0, evidence: 1.5, effort: 1.5 };
+                },
+
+                get filteredReviews() {
+                    return this.reviewsList.filter(r => {
+                        const matchesCategory = this.selectedCategory === 'All' || r.category === this.selectedCategory;
+                        const matchesSearch = !this.reviewSearch || r.text.toLowerCase().includes(this.reviewSearch.toLowerCase());
+                        return matchesCategory && matchesSearch;
                     });
                 },
 
-                showToast(msg) {
-                    this.toast.message = msg;
-                    this.toast.visible = true;
-                    setTimeout(() => { this.toast.visible = false; }, 2600);
+                get rankedOpportunities() {
+                    const w = this.weights;
+                    const items = [
+                        {
+                            id: 'opp_codec',
+                            title: 'ExoPlayer Software Decoder Fallback (HEVC / 4K MKV)',
+                            category: 'Bugs and crashes',
+                            tier: 'High-Impact Project',
+                            desc: '18% of reviews report audio-only black screens when hardware decoders fail on 4K/8K VR videos on budget MediaTek/Exynos chipsets.',
+                            freq: 4, sev: 5, aff: 4, strat: 5, evid: 4, effort: 2, conf: 0.95,
+                            action: 'Catch MediaCodec.CodecException and fallback to Media3 extension-ffmpeg.',
+                            kotlinStep: 'Add androidx.media3:media3-decoder-ffmpeg in build.gradle.kts.',
+                            risk: 'Software decoding adds ~4.2MB APK size.'
+                        },
+                        {
+                            id: 'opp_ads',
+                            title: 'Immersion Guard: VR Session Ad Frequency Capping',
+                            category: 'Advertising and monetization',
+                            tier: 'Quick Win',
+                            desc: 'Full-screen interstitials firing while phone is inside a VR cardboard box force users to unmount the phone, triggering 1★ reviews.',
+                            freq: 4, sev: 4, aff: 5, strat: 4, evid: 4, effort: 1, conf: 0.90,
+                            action: 'Suppress interstitial popups when VR cardboard render loop is active. Serve rewarded ad on exit.',
+                            kotlinStep: 'Gate AdMob interstitial triggers with isVrCardboardActive boolean in Kotlin.',
+                            risk: 'Short-term impression velocity drops 12% before retention gains offset.'
+                        },
+                        {
+                            id: 'opp_recenter',
+                            title: 'Hardware Volume Key Viewport Recenter & Anti-Drift',
+                            category: 'User interface and usability',
+                            tier: 'Quick Win',
+                            desc: 'Gyroscope drift causes video viewport to slowly shift sideways over 5-10 minutes of watching.',
+                            freq: 3, sev: 4, aff: 3, strat: 4, evid: 3, effort: 1, conf: 0.85,
+                            action: 'Add double-tap volume-up shortcut to zero orientation matrix instantly without menu touch.',
+                            kotlinStep: 'Override onKeyDown in Android Activity to recalibrate rotation matrix.',
+                            risk: 'Ensure volume override does not silence ringtone notifications.'
+                        },
+                        {
+                            id: 'opp_subtitles',
+                            title: 'External Subtitles (.SRT/.VTT) & Multi-Audio Selector',
+                            category: 'Missing features',
+                            tier: 'Experimental Feature',
+                            desc: 'International VR cinema fans demand subtitle rendering for foreign language documentaries.',
+                            freq: 2, sev: 2, aff: 2, strat: 3, evid: 2, effort: 2, conf: 0.80,
+                            action: 'Auto-scan matching .srt files and render text in OpenGL 3D space.',
+                            kotlinStep: 'Handle Android 11+ Scoped Storage SAF file access uri for subtitle files.',
+                            risk: 'Requires storage access framework uri permissions.'
+                        }
+                    ];
+
+                    return items.map(item => {
+                        const num = (w.frequency * item.freq) + (w.severity * item.sev) + (w.affected * item.aff) + (w.strategy * item.strat) + (w.evidence * item.evid);
+                        const den = Math.max(0.2, w.effort * item.effort);
+                        const rawScore = (num / den) * item.conf;
+                        const roiIndex = Math.min(100, Math.round(rawScore * 6.5));
+                        return { ...item, score: rawScore.toFixed(2), roiIndex };
+                    }).sort((a, b) => b.score - a.score);
                 },
 
-                copySlackShare() {
-                    navigator.clipboard.writeText(window.location.href);
-                    this.shareCopied = true;
-                    this.showToast('Production link copied to clipboard!');
-                    setTimeout(() => { this.shareCopied = false; }, 3000);
+                get slackMarkdown() {
+                    return `*AppRadar // Weekly Telemetry Briefing*
+*Asset:* VR Player 360° Video Player (Zen Tech)
+*Package:* \`com.vrplayer.vrvideoplayer.videos360.vrvideos.vrapp\`
+*Performance:* 500,000+ Installs | $6,834 Rev (30d) | 1.24x ROAS | 2.82★ Net Rating
+
+🚨 *Core Friction & Rating Blocker:*
+18% of user feedback reports black screens on 4K MKV/HEVC video downloads, and unskippable interstitial ads interrupting playback while the phone is locked inside a VR headset.
+
+🥊 *Top Competitor Benchmarks:*
+• *VR 3 (Galaxy IT Solution)*: Suffering severe 1★ ad spam complaints ("ads every 3 seconds").
+• *VR Player Pro (IRUSU)*: Praised for theater mode, but criticized for look-based navigation and drift.
+
+🎯 *Top Engineering ROI Priorities:*
+1. *MediaCodec Software Fallback (Media3)*: Score 14.5 | ROI 92/100 (High-Impact Fix)
+   → _Kotlin Next Step:_ Add \`androidx.media3:media3-decoder-ffmpeg\` to catch hardware surface errors.
+2. *VR Immersion Ad Guard*: Score 13.8 | ROI 88/100 (Quick Win)
+   → _Action:_ Suppress interstitial popups during active gyroscope cardboard rendering.
+
+🔗 *Live Interactive Dashboard:* https://riz5y.github.io/vr-player-growth-radar/`;
                 },
 
-                copyLinearSpec(exp) {
-                    const text = `## [${exp.id}] ${exp.title}\n**Priority:** ${exp.priority}\n**Target Metric:** ${exp.target_metric}\n\n### Root Cause Telemetry\n${exp.hypothesis}\n\n### Customer Proof Quotes\n` + exp.sample_quotes.map(q => `- "${q}"`).join('\n');
-                    navigator.clipboard.writeText(text);
-                    this.showToast(`Copied ${exp.id} ticket!`);
+                copySlackBrief() {
+                    navigator.clipboard.writeText(this.slackMarkdown);
+                    this.copySuccess = true;
+                    setTimeout(() => { this.copySuccess = false; }, 3000);
                 },
 
-                renderCharts() {
-                    // 1. Time Series Chart
-                    const ctxTS = document.getElementById('portfolioTimeSeriesChart');
-                    if (ctxTS) {
-                        const days = ['09-23','09-25','09-27','09-29','10-01','10-03','10-05','10-07','10-09','10-11','10-13','10-15','10-17','10-19','10-20','10-22'];
-                        const revData = [1120, 1050, 980, 1240, 1180, 1090, 1310, 1150, 1020, 990, 1080, 1140, 950, 795, 483, 130];
-                        const spendData = [1150, 1090, 1020, 1290, 1220, 1140, 1360, 1180, 1050, 1020, 1100, 1160, 980, 795, 0, 0];
+                initCharts() {
+                    setTimeout(() => {
+                        const ctx = document.getElementById('financialChart');
+                        if (!ctx) return;
 
-                        new Chart(ctxTS, {
+                        const labels = Array.from({length: 30}, (_, i) => {
+                            const d = new Date();
+                            d.setDate(d.getDate() - (29 - i));
+                            return (d.getMonth() + 1) + '/' + d.getDate();
+                        });
+
+                        const revData = [180, 210, 240, 195, 260, 310, 280, 290, 310, 240, 210, 280, 340, 390, 410, 380, 320, 290, 310, 270, 240, 260, 290, 310, 330, 290, 240, 210, 230, 255];
+                        const spendData = [140, 160, 180, 170, 200, 230, 210, 220, 240, 190, 170, 210, 250, 280, 300, 270, 240, 220, 240, 210, 190, 200, 220, 230, 240, 210, 180, 160, 170, 185];
+
+                        new Chart(ctx, {
                             type: 'line',
                             data: {
-                                labels: days,
+                                labels: labels,
                                 datasets: [
                                     {
                                         label: 'Revenue ($)',
@@ -674,77 +972,41 @@
                                         borderColor: '#00FF87',
                                         backgroundColor: 'rgba(0, 255, 135, 0.08)',
                                         fill: true,
-                                        tension: 0.35
+                                        tension: 0.35,
+                                        borderWidth: 2.5
                                     },
                                     {
                                         label: 'Ad Spend ($)',
                                         data: spendData,
-                                        borderColor: '#FF2A55',
-                                        backgroundColor: 'rgba(255, 42, 85, 0.05)',
-                                        fill: true,
-                                        tension: 0.35
+                                        borderColor: '#64748B',
+                                        backgroundColor: 'transparent',
+                                        borderDash: [4, 4],
+                                        tension: 0.35,
+                                        borderWidth: 1.5
                                     }
                                 ]
                             },
                             options: {
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                plugins: { legend: { display: false } },
+                                plugins: {
+                                    legend: { display: false }
+                                },
                                 scales: {
-                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#8A99AD', font: { family: 'JetBrains Mono' } } },
-                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8A99AD', font: { family: 'JetBrains Mono' } } }
+                                    x: {
+                                        grid: { color: 'rgba(255,255,255,0.03)' },
+                                        ticks: { color: '#64748B', font: { family: 'JetBrains Mono', size: 10 } }
+                                    },
+                                    y: {
+                                        grid: { color: 'rgba(255,255,255,0.05)' },
+                                        ticks: { color: '#94A3B8', font: { family: 'JetBrains Mono', size: 10 } }
+                                    }
                                 }
                             }
                         });
-                    }
 
-                    // 2. VR Category Donut
-                    const ctxDonut = document.getElementById('vrCategoryDonut');
-                    if (ctxDonut) {
-                        new Chart(ctxDonut, {
-                            type: 'doughnut',
-                            data: {
-                                labels: ['Gyro & Tracking Drift', '360° Codec & Crash', 'Ad Intrusion', 'Thermal & 8K', 'VR Optics/FOV'],
-                                datasets: [{
-                                    data: [46, 38, 52, 34, 28],
-                                    backgroundColor: ['#00F2FE', '#FF2A55', '#F59E0B', '#8B5CF6', '#00FF87'],
-                                    borderColor: '#06080F',
-                                    borderWidth: 3
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                cutout: '70%',
-                                plugins: { legend: { position: 'bottom', labels: { color: '#94A3B8' } } }
-                            }
-                        });
-                    }
-
-                    // 3. VR Star Bar
-                    const ctxStar = document.getElementById('vrStarBar');
-                    if (ctxStar) {
-                        new Chart(ctxStar, {
-                            type: 'bar',
-                            data: {
-                                labels: ['1★', '2★', '3★', '4★', '5★'],
-                                datasets: [{
-                                    data: [120, 85, 140, 290, 840],
-                                    backgroundColor: ['#FF2A55', '#F97316', '#FBBF24', '#00F2FE', '#00FF87'],
-                                    borderRadius: 6
-                                }]
-                            },
-                            options: {
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                plugins: { legend: { display: false } },
-                                scales: {
-                                    x: { grid: { color: 'rgba(255,255,255,0.03)' }, ticks: { color: '#8A99AD' } },
-                                    y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8A99AD' } }
-                                }
-                            }
-                        });
-                    }
+                        lucide.createIcons();
+                    }, 100);
                 }
             }
         }
